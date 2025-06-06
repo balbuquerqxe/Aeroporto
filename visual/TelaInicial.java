@@ -1,5 +1,8 @@
 package visual;
 
+import funcionarios.LoginFuncionario;
+import passageiros.LoginPassageiro;
+
 import java.awt.*;
 import javax.swing.*;
 

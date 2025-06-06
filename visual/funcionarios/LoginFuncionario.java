@@ -85,7 +85,10 @@ public class LoginFuncionario extends JFrame {
                     case "COMISSARIO":
                         break;
                     case "ADMINISTRATIVO":
-                        new TelaAdministrativo().setVisible(true);
+                        String nomeFuncionario = LeitorUsuarios.buscarNomePorMatricula("dados/funcionarios.csv",
+                                matricula);
+                        new TelaAdministrativo(nomeFuncionario).setVisible(true);
+                        dispose();
                         break;
                     default:
                         JOptionPane.showMessageDialog(this, "Tipo de funcionário desconhecido.");

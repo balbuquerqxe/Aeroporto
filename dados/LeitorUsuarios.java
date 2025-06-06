@@ -91,4 +91,27 @@ public class LeitorUsuarios {
         return null;
     }
 
+    public static String buscarNomePorMatricula(String caminhoArquivo, String matricula) {
+        try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
+            String linha;
+            boolean primeira = true;
+
+            while ((linha = br.readLine()) != null) {
+                if (primeira) {
+                    primeira = false;
+                    continue;
+                }
+
+                String[] partes = linha.split(",");
+                if (partes.length >= 6 && partes[5].trim().equals(matricula)) {
+                    return partes[1].trim(); // nome do funcionário (coluna 2)
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao buscar nome do funcionário: " + e.getMessage());
+        }
+
+        return "Funcionário";
+    }
+
 }
