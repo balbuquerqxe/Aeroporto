@@ -28,11 +28,11 @@ public enum TipoAviao {
         return modelo;
     }
 
-    public int getPoltronasEconomica() {
+    public int getPoltronasEconomicas() {
         return poltronasEconomica;
     }
 
-    public int getPoltronasExecutiva() {
+    public int getPoltronasExecutivas() {
         return poltronasExecutiva;
     }
 
