@@ -1,10 +1,9 @@
 package visual;
 
-import funcionarios.LoginFuncionario;
-import passageiros.LoginPassageiro;
-
 import java.awt.*;
 import javax.swing.*;
+import visual.funcionarios.LoginFuncionario;
+import visual.passageiros.LoginPassageiro;
 
 public class TelaInicial extends JFrame {
 

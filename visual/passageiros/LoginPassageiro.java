@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import visual.TelaInicial;
 
 public class LoginPassageiro extends JFrame {
 
@@ -85,6 +86,13 @@ public class LoginPassageiro extends JFrame {
             dispose();
         });
 
+        // Botão "Não possui cadastro?"
+        JButton cadastrar = new JButton("Não possui cadastro?");
+        estilizarBotaoLink(cadastrar);
+        cadastrar.addActionListener(e -> {
+            new TelaCadastroPassageiro().setVisible(true);
+        });
+
         // Montando layout
         painelCentral.add(titulo);
         painelCentral.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -94,21 +102,36 @@ public class LoginPassageiro extends JFrame {
         painelCentral.add(Box.createRigidArea(new Dimension(0, 20)));
         painelCentral.add(entrar);
 
-        // Painel inferior com botão voltar
-        JPanel painelInferior = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        // Painel inferior com layout BorderLayout
+        JPanel painelInferior = new JPanel(new BorderLayout());
         painelInferior.setBackground(Color.decode("#e6f0ff"));
-        painelInferior.add(voltar);
 
+        // Subpainel esquerdo com botão Voltar
+        JPanel painelEsquerdo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        painelEsquerdo.setBackground(Color.decode("#e6f0ff"));
+        painelEsquerdo.add(voltar);
+
+        // Subpainel direito com botão de cadastro
+        JPanel painelDireito = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        painelDireito.setBackground(Color.decode("#e6f0ff"));
+        painelDireito.add(cadastrar);
+
+        // Monta os dois lados no painel inferior
+        painelInferior.add(painelEsquerdo, BorderLayout.WEST);
+        painelInferior.add(painelDireito, BorderLayout.EAST);
+
+        // Adiciona à tela
+        add(painelInferior, BorderLayout.SOUTH);
         add(painelCentral, BorderLayout.CENTER);
         add(painelInferior, BorderLayout.SOUTH);
+
     }
 
     private void estilizarCampoTexto(JTextField campo) {
         campo.setMaximumSize(new Dimension(250, 30));
         campo.setBorder(BorderFactory.createCompoundBorder(
-            new LineBorder(Color.decode("#003366"), 1, true),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
-        ));
+                new LineBorder(Color.decode("#003366"), 1, true),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         campo.setBackground(Color.WHITE);
         campo.setFont(new Font("SansSerif", Font.PLAIN, 14));
     }
@@ -130,4 +153,15 @@ public class LoginPassageiro extends JFrame {
         botao.setFocusPainted(false);
         botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 1));
     }
+
+    private void estilizarBotaoLink(JButton botao) {
+        botao.setBackground(Color.decode("#e6f0ff"));
+        botao.setForeground(Color.decode("#0052cc"));
+        botao.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        botao.setFocusPainted(false);
+        botao.setBorderPainted(false);
+        botao.setContentAreaFilled(false);
+        botao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
 }
