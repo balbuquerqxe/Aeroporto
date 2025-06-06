@@ -1,10 +1,11 @@
 package pessoas;
 
-// Administrativo.java
+import enums.TipoFuncionario;
+
 public class Administrativo extends Funcionario {
 
     public Administrativo(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
-        super(id, nome, cpf, dataNascimento, matricula, senha);
+        super(id, nome, cpf, dataNascimento, matricula, senha, TipoFuncionario.ADMINISTRATIVO);
     }
 
     @Override

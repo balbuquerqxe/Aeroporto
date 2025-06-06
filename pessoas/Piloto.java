@@ -1,10 +1,11 @@
 package pessoas;
 
-// Piloto.java
+import enums.TipoFuncionario;
+
 public class Piloto extends Funcionario {
 
     public Piloto(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
-        super(id, nome, cpf, dataNascimento, matricula, senha);
+        super(id, nome, cpf, dataNascimento, matricula, senha, TipoFuncionario.PILOTO);
     }
 
     @Override
@@ -17,5 +18,7 @@ public class Piloto extends Funcionario {
         verEscala();
     }
 
-    public void verEscala() { /* lógica de consulta do próximo voo */ }
+    public void verEscala() {
+        // lógica de consulta do próximo voo
+    }
 }
