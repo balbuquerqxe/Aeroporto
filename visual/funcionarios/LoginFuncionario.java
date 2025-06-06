@@ -1,6 +1,8 @@
 package visual.funcionarios;
 
 import dados.LeitorUsuarios;
+import visual.TelaInicial;
+
 import java.awt.*;
 import java.util.Map;
 import javax.swing.*;
@@ -69,13 +71,30 @@ public class LoginFuncionario extends JFrame {
 
             Map<String, String> funcionarios = LeitorUsuarios.carregarMatriculasESenhas("dados/funcionarios.csv");
 
-            if (funcionarios.containsKey(matricula) &&
-                    funcionarios.get(matricula).equals(senha)) {
-                JOptionPane.showMessageDialog(this, "Login bem-sucedido! Bem-vindo, funcionário.");
-                // abrir próxima tela
+            String[] dados = LeitorUsuarios.buscarFuncionarioCompleto("dados/funcionarios.csv", matricula);
+
+            if (dados != null && dados[4].equals(senha)) {
+                String tipo = dados[6].toUpperCase(); // Supondo que tipo esteja na sétima coluna
+
+                JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
+
+                switch (tipo) {
+                    case "PILOTO":
+                        break;
+                    case "COMISSARIO":
+                        break;
+                    case "ADMINISTRATIVO":
+                        new TelaAdministrativo().setVisible(true);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(this, "Tipo de funcionário desconhecido.");
+                }
+
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Matrícula ou senha inválidos.");
             }
+
         });
 
         // Botão voltar
@@ -129,4 +148,5 @@ public class LoginFuncionario extends JFrame {
         botao.setFocusPainted(false);
         botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 1));
     }
+
 }
