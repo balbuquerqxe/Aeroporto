@@ -63,31 +63,25 @@ public class LeitorUsuarios {
         return passageiros;
     }
 
-    public static String[] buscarFuncionarioCompleto(String caminhoArquivo, String matriculaBuscada) {
+    public static String[] buscarFuncionarioCompleto(String caminhoArquivo, String matricula) {
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
             boolean primeiraLinha = true;
 
             while ((linha = br.readLine()) != null) {
                 if (primeiraLinha) {
-                    primeiraLinha = false; // pula o cabeçalho
-                    continue;
+                    primeiraLinha = false;
+                    continue; // pula o cabeçalho
                 }
 
                 String[] partes = linha.split(",");
-
-                if (partes.length >= 7) {
-                    String matricula = partes[5].trim(); // 6ª coluna
-                    if (matricula.equals(matriculaBuscada)) {
-                        return partes;
-                    }
+                if (partes.length >= 7 && partes[5].trim().equals(matricula.trim())) {
+                    return partes;
                 }
             }
-
         } catch (IOException e) {
-            System.err.println("Erro ao buscar funcionário completo: " + e.getMessage());
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
-
         return null;
     }
 

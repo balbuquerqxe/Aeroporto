@@ -1,0 +1,5 @@
+[Bruna] Olá, gostaria de saber onde posso consultar meu voo.
+[Lucas] Estou com dúvidas sobre a bagagem despachada.
+[Julia] O embarque é no terminal 1 ou 2?
+
+Administrativo -> Bruna | Mensagem: Você pode consultar no site.

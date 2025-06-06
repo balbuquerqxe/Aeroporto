@@ -25,9 +25,9 @@ public class TelaAdministrativo extends JFrame {
         botoes.setBackground(Color.decode("#e6f0ff"));
 
         String[] opcoes = {
-            "Cadastrar Voo", "Gerenciar Aviões",
-            "Alocar Tripulação", "Gerar Relatórios",
-            "Responder Perguntas", "Sair"
+                "Cadastrar Voo", "Gerenciar Aviões",
+                "Alocar Tripulação", "Gerar Relatórios",
+                "Responder Perguntas", "Voltar"
         };
 
         for (String texto : opcoes) {
@@ -35,7 +35,7 @@ public class TelaAdministrativo extends JFrame {
             botao.setFocusPainted(false);
             botao.setFont(new Font("SansSerif", Font.PLAIN, 14));
             botao.setBackground(Color.decode("#0052cc"));
-            botao.setForeground(Color.WHITE);
+            botao.setForeground(Color.decode("#003366"));
             botoes.add(botao);
 
             switch (texto) {
@@ -44,11 +44,11 @@ public class TelaAdministrativo extends JFrame {
                         new TelaChatDuvidasAdministrativo(funcionario).setVisible(true);
                     });
                     break;
-                case "Sair":
+                case "Voltar":
                     botao.addActionListener(e -> {
                         dispose();
-                        JOptionPane.showMessageDialog(this, "Você saiu do sistema.");
-                        // Se quiser voltar para a tela de login, chame aqui.
+                        JOptionPane.showMessageDialog(this, "Voltando para o login.");
+                        new visual.funcionarios.LoginFuncionario().setVisible(true);
                     });
                     break;
                 // Adicione os demais listeners aqui se quiser.

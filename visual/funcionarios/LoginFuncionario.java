@@ -71,7 +71,7 @@ public class LoginFuncionario extends JFrame {
             
             String[] dados = LeitorUsuarios.buscarFuncionarioCompleto("dados/funcionarios.csv", matricula);
 
-            if (dados != null && dados[5].equals(senha)) {
+            if (dados != null && dados[4].equals(senha)) {
                 String tipo = dados[6].toUpperCase(); // tipo na sétima coluna
                 JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
 
