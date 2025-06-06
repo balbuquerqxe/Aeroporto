@@ -22,6 +22,11 @@ public class Passageiro extends Pessoa implements Comunicavel {
         System.out.println("Mensagem para Passageiro " + nome + ": " + mensagem);
     }
 
+    @Override
+    public String getNome() {
+        return this.nome;
+    }
+
     // Métodos específicos:
     public void consultarVoos() {
         /* ... */ }

@@ -1,11 +1,14 @@
 package visual.funcionarios.administrativo;
 
+import comunicacao.CentralComunicacao;
 import java.awt.*;
 import javax.swing.*;
+import pessoas.Administrativo;
+import visual.administrativo.TelaChatDuvidasAdministrativo;
 
 public class TelaAdministrativo extends JFrame {
 
-    public TelaAdministrativo(String nomeFuncionario) {
+    public TelaAdministrativo(Administrativo funcionario) {
         setTitle("Painel Administrativo");
         setSize(500, 400);
         setLocationRelativeTo(null);
@@ -13,7 +16,7 @@ public class TelaAdministrativo extends JFrame {
         getContentPane().setBackground(Color.decode("#e6f0ff"));
         setLayout(new BorderLayout());
 
-        JLabel titulo = new JLabel("Bem-vindo, " + nomeFuncionario + "!", SwingConstants.CENTER);
+        JLabel titulo = new JLabel("Bem-vindo, " + funcionario.getNome() + "!", SwingConstants.CENTER);
         titulo.setFont(new Font("SansSerif", Font.BOLD, 20));
         titulo.setForeground(Color.decode("#003366"));
         titulo.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
@@ -36,22 +39,27 @@ public class TelaAdministrativo extends JFrame {
             botao.setForeground(Color.WHITE);
             botoes.add(botao);
 
-            if (texto.equals("Sair")) {
-                botao.addActionListener(e -> {
-                    dispose();
-                    JOptionPane.showMessageDialog(this, "Você saiu do sistema.");
-                    // Voltar para o login, se quiser
-                });
+            switch (texto) {
+                case "Responder Perguntas":
+                    botao.addActionListener(e -> {
+                        new TelaChatDuvidasAdministrativo(funcionario).setVisible(true);
+                    });
+                    break;
+                case "Sair":
+                    botao.addActionListener(e -> {
+                        dispose();
+                        JOptionPane.showMessageDialog(this, "Você saiu do sistema.");
+                        // Se quiser voltar para a tela de login, chame aqui.
+                    });
+                    break;
+                // Adicione os demais listeners aqui se quiser.
             }
-
-            // Aqui você pode adicionar ações específicas para os outros botões
         }
 
         add(titulo, BorderLayout.NORTH);
         add(botoes, BorderLayout.CENTER);
-    }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaAdministrativo("Funcionário X").setVisible(true));
+        // Registra o funcionário na central de comunicação ao abrir a tela
+        CentralComunicacao.registrar(funcionario);
     }
 }

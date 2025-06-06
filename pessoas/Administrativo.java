@@ -30,6 +30,11 @@ public class Administrativo extends Funcionario implements Comunicavel {
         System.out.println("Mensagem recebida por Administrativo " + nome + ": " + mensagem);
     }
 
+    @Override
+    public String getNome() {
+        return this.nome;
+    }
+
     // Funções específicas
     public void cadastrarVoo() {
         /* ... */ }
