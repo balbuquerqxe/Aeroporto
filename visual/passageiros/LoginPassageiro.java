@@ -1,10 +1,14 @@
 package visual.passageiros;
 
 import dados.LeitorUsuarios;
+import pessoas.Passageiro;
+
 import java.awt.*;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
+import comunicacao.CentralComunicacao;
 import visual.TelaInicial;
 
 public class LoginPassageiro extends JFrame {
@@ -72,7 +76,9 @@ public class LoginPassageiro extends JFrame {
 
             if (passageiros.containsKey(cpf) && passageiros.get(cpf).equals(senha)) {
                 JOptionPane.showMessageDialog(this, "Login bem-sucedido! Bem-vindo, passageiro.");
-                // abrir próxima tela
+                Passageiro passageiro = CentralComunicacao.getPassageiroPorCpf(cpf);
+                new TelaPassageiro(passageiro).setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "CPF ou senha inválidos.");
             }

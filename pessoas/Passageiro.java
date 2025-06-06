@@ -27,6 +27,10 @@ public class Passageiro extends Pessoa implements Comunicavel {
         return this.nome;
     }
 
+    public String getCPF() {
+        return this.cpf;
+    }
+
     // Métodos específicos:
     public void consultarVoos() {
         /* ... */ }

@@ -4,9 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import pessoas.Passageiro;
 
 public class CentralComunicacao {
-    private static final List<Comunicavel> usuarios = new ArrayList<>();
+    public static final List<Comunicavel> usuarios = new ArrayList<>();
     public static JTextArea areaMensagensCompartilhada;
     private static final String ARQUIVO_MENSAGENS = "dados/mensagens.txt";
 
@@ -62,4 +63,17 @@ public class CentralComunicacao {
             System.err.println("Erro ao salvar mensagem no histórico: " + e.getMessage());
         }
     }
+
+    public static Passageiro getPassageiroPorCpf(String cpf) {
+        for (Comunicavel c : usuarios) {
+            if (c instanceof Passageiro) {
+                Passageiro p = (Passageiro) c;
+                if (p.getCPF().equals(cpf)) {
+                    return p;
+                }
+            }
+        }
+        return null;
+    }
+
 }
