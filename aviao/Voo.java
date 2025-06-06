@@ -1,7 +1,6 @@
 package aviao;
 
 import enums.Destino;
-import enums.TipoAviao;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -90,6 +89,6 @@ public class Voo {
     @Override
     public String toString() {
         return "Voo para " + destino.name() + " | Saída: " + horarioSaida +
-               " | Avião: " + aviao.getIdentificacao();
+               " | Avião: " + aviao.getIdentificador();
     }
 }

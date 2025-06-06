@@ -1,9 +1,15 @@
 package pessoas;
 
+import aviao.GerenciadorDeVoos;
+import aviao.Voo;
 import comunicacao.Comunicavel;
 import enums.TipoFuncionario;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Administrativo extends Funcionario implements Comunicavel {
+public class Administrativo extends Funcionario implements Comunicavel, GerenciadorDeVoos {
+
+    private List<Voo> voosCadastrados = new ArrayList<>();
 
     public Administrativo(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
         super(id, nome, cpf, dataNascimento, matricula, senha, TipoFuncionario.ADMINISTRATIVO);
@@ -35,10 +41,19 @@ public class Administrativo extends Funcionario implements Comunicavel {
         return this.nome;
     }
 
-    // Funções específicas
-    public void cadastrarVoo() {
-        /* ... */ }
+    // Implementação da interface GerenciadorDeVoos
+    @Override
+    public void cadastrarVoo(Voo voo) {
+        voosCadastrados.add(voo);
+        System.out.println("Voo cadastrado com sucesso: " + voo);
+        // Aqui você pode adicionar código para salvar no arquivo ou registrar na Central
+    }
 
+    public List<Voo> getVoosCadastrados() {
+        return voosCadastrados;
+    }
+
+    // Funções específicas
     public void gerenciarAvioes() {
         /* ... */ }
 
@@ -48,6 +63,5 @@ public class Administrativo extends Funcionario implements Comunicavel {
     public void gerarRelatorios() {
         /* ... */ }
 
-    public void responderPerguntas() {
-        /* ... */ }
 }
+
