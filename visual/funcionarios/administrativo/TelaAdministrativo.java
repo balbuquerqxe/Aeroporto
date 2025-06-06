@@ -1,9 +1,13 @@
 package visual.funcionarios.administrativo;
 
 import comunicacao.CentralComunicacao;
+import dados.LeitorUsuarios;
+
 import java.awt.*;
 import javax.swing.*;
 import pessoas.Administrativo;
+import pessoas.Piloto;
+import SistemaAeroporto;
 
 public class TelaAdministrativo extends JFrame {
 
@@ -39,6 +43,14 @@ public class TelaAdministrativo extends JFrame {
             botoes.add(botao);
 
             switch (texto) {
+                case "Cadastrar Voo":
+                    botao.addActionListener(e -> {
+                        // Aqui você chama a tela de cadastro de voo
+                        Administrativo adm = (Administrativo) funcionario;
+                        new TelaCadastrarVoos(adm, "dados/avioes.csv", SistemaAeroporto.pilotosDisponiveis);
+
+                    });
+                    break;
                 case "Responder Perguntas":
                     botao.addActionListener(e -> {
                         new TelaChatDuvidasAdministrativo(funcionario).setVisible(true);

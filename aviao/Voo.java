@@ -3,6 +3,7 @@ package aviao;
 import enums.Destino;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import pessoas.Piloto;
 
 public class Voo {
     private String id;
@@ -10,13 +11,13 @@ public class Voo {
     private Destino destino;
     private LocalDateTime horarioSaida;
     private LocalDateTime horarioChegada;
-    private String piloto;
+    private Piloto piloto;
 
     private int ocupadasEconomicas;
     private int ocupadasExecutivas;
 
     public Voo(Aviao aviao, Destino destino, LocalDateTime horarioSaida,
-               LocalDateTime horarioChegada, String piloto) {
+               LocalDateTime horarioChegada, Piloto piloto) {
         this.id = UUID.randomUUID().toString();
         this.aviao = aviao;
         this.destino = destino;
@@ -48,7 +49,7 @@ public class Voo {
         return horarioChegada;
     }
 
-    public String getPiloto() {
+    public Piloto getPiloto() {
         return piloto;
     }
 

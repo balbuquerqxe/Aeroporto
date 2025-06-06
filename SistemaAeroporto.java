@@ -6,16 +6,22 @@ import enums.TipoFuncionario;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import pessoas.Administrativo;
 import pessoas.Passageiro;
+import pessoas.Piloto;
 import visual.TelaInicial;
 
+
 public class SistemaAeroporto {
+    
+    public static List<Piloto> pilotosDisponiveis = new ArrayList<>();
 
     public static void main(String[] args) {
         inicializarChatCompartilhado();
-        carregarMensagensIniciais();  
+        carregarMensagensIniciais();
         carregarFuncionarios();
         carregarPassageiros();
         carregarAvioes();
@@ -50,6 +56,9 @@ public class SistemaAeroporto {
                         if (tipo == TipoFuncionario.ADMINISTRATIVO) {
                             Administrativo adm = new Administrativo(id, nome, cpf, nascimento, senha, matricula);
                             CentralComunicacao.registrar(adm);
+                        } else if (tipo == TipoFuncionario.PILOTO) {
+                            Piloto piloto = new Piloto(id, nome, cpf, nascimento, senha, matricula);
+                            pilotosDisponiveis.add(piloto);
                         }
 
                         // Adicione aqui outros tipos (ex: PILOTO, COMISSARIO), se necessário
@@ -118,37 +127,36 @@ public class SistemaAeroporto {
     }
 
     private static void carregarAvioes() {
-    try (BufferedReader br = new BufferedReader(new FileReader("dados/avioes.csv"))) {
-        String linha;
-        boolean primeiraLinha = true;
+        try (BufferedReader br = new BufferedReader(new FileReader("dados/avioes.csv"))) {
+            String linha;
+            boolean primeiraLinha = true;
 
-        while ((linha = br.readLine()) != null) {
-            if (primeiraLinha) {
-                primeiraLinha = false;
-                continue;
-            }
+            while ((linha = br.readLine()) != null) {
+                if (primeiraLinha) {
+                    primeiraLinha = false;
+                    continue;
+                }
 
-            String[] partes = linha.split(",");
-            if (partes.length >= 3) {
-                String tipoStr = partes[1].trim().toUpperCase();
-                String identificacao = partes[2].trim();
+                String[] partes = linha.split(",");
+                if (partes.length >= 3) {
+                    String tipoStr = partes[1].trim().toUpperCase();
+                    String identificacao = partes[2].trim();
 
-                try {
-                    TipoAviao tipo = TipoAviao.valueOf(tipoStr);
-                    Aviao aviao = new Aviao(identificacao, tipo);
-                    
-                    // Aqui você decide onde guardar. Exemplo: CentralAvioes.registrar(aviao);
-                    System.out.println("Avião carregado: " + aviao);
+                    try {
+                        TipoAviao tipo = TipoAviao.valueOf(tipoStr);
+                        Aviao aviao = new Aviao(identificacao, tipo);
 
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Tipo de avião inválido: " + tipoStr);
+                        // Aqui você decide onde guardar. Exemplo: CentralAvioes.registrar(aviao);
+                        System.out.println("Avião carregado: " + aviao);
+
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Tipo de avião inválido: " + tipoStr);
+                    }
                 }
             }
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar aviões: " + e.getMessage());
         }
-    } catch (IOException e) {
-        System.out.println("Erro ao carregar aviões: " + e.getMessage());
     }
-}
-
 
 }

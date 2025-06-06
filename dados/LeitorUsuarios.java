@@ -2,6 +2,7 @@ package dados;
 
 import java.io.*;
 import java.util.*;
+import pessoas.Piloto;
 
 public class LeitorUsuarios {
 
@@ -106,6 +107,37 @@ public class LeitorUsuarios {
         }
 
         return "Funcionário";
+    }
+
+    public static List<Piloto> carregarPilotos(String caminhoArquivo) {
+        List<Piloto> pilotos = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
+            String linha = br.readLine(); // pula cabeçalho
+
+            while ((linha = br.readLine()) != null) {
+                String[] partes = linha.split(",");
+
+                if (partes.length < 7)
+                    continue;
+
+                String id = partes[0];
+                String nome = partes[1];
+                String cpf = partes[2];
+                String dataNascimento = partes[3];
+                String senha = partes[4];
+                String matricula = partes[5];
+                String tipo = partes[6];
+
+                if (tipo.equalsIgnoreCase("PILOTO")) {
+                    pilotos.add(new Piloto(id, nome, cpf, dataNascimento, senha, matricula));
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler pilotos: " + e.getMessage());
+        }
+
+        return pilotos;
     }
 
 }
