@@ -42,11 +42,9 @@ public class TelaPassageiro extends JFrame {
                     });
                     break;
                 case "Consultar Voos":
-                    botao.addActionListener(e -> {
-                        JOptionPane.showMessageDialog(this,
-                                "Funcionalidade de consulta de voos ainda não implementada.");
-                    });
+                    botao.addActionListener(e -> new TelaVoosDisponiveis().setVisible(true));
                     break;
+
                 case "Reservar Poltrona":
                     botao.addActionListener(e -> {
                         JOptionPane.showMessageDialog(this,

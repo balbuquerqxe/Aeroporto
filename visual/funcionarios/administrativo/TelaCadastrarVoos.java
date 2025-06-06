@@ -27,7 +27,9 @@ public class TelaCadastrarVoos extends JFrame {
         JComboBox<Piloto> comboPilotos = new JComboBox<>(pilotosDisponiveis.toArray(new Piloto[0]));
 
         JTextField campoSaida = new JTextField("10:00");
-        JTextField campoChegada = new JTextField("14:00");
+        JLabel labelChegadaCalculada = new JLabel("Será calculada automaticamente.");
+        add(new JLabel("Hora de Chegada:"));
+        add(labelChegadaCalculada);
 
         // Seletor de data
         SpinnerDateModel dateModel = new SpinnerDateModel();
@@ -48,13 +50,17 @@ public class TelaCadastrarVoos extends JFrame {
 
                 // Pega os horários
                 LocalTime horaSaida = LocalTime.parse(campoSaida.getText());
-                LocalTime horaChegada = LocalTime.parse(campoChegada.getText());
-
                 LocalDateTime saida = LocalDateTime.of(dataLocal, horaSaida);
-                LocalDateTime chegada = LocalDateTime.of(dataLocal, horaChegada);
+
+                // cálculo automático
+                int distancia = destinoSelecionado.getDistanciaKm();
+                int velocidade = aviaoSelecionado.getTipo().getVelocidadeMediaKmH();
+                long duracaoHoras = Math.round((double) distancia / velocidade * 60); // minutos
+                LocalDateTime chegada = saida.plusMinutes(duracaoHoras);
 
                 Voo voo = new Voo(aviaoSelecionado, destinoSelecionado, saida, chegada, pilotoSelecionado);
                 adm.cadastrarVoo(voo);
+                adm.salvarVoosEmArquivo();
                 JOptionPane.showMessageDialog(this, "Voo cadastrado com sucesso!");
                 dispose();
             } catch (Exception ex) {
@@ -77,9 +83,6 @@ public class TelaCadastrarVoos extends JFrame {
 
         add(new JLabel("Hora de Saída (HH:mm):"));
         add(campoSaida);
-
-        add(new JLabel("Hora de Chegada (HH:mm):"));
-        add(campoChegada);
 
         add(new JLabel());
         add(cadastrar);

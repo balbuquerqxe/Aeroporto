@@ -4,6 +4,9 @@ import aviao.GerenciadorDeVoos;
 import aviao.Voo;
 import comunicacao.Comunicavel;
 import enums.TipoFuncionario;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,11 +49,32 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
     public void cadastrarVoo(Voo voo) {
         voosCadastrados.add(voo);
         System.out.println("Voo cadastrado com sucesso: " + voo);
-        // Aqui você pode adicionar código para salvar no arquivo ou registrar na Central
+        // Aqui você pode adicionar código para salvar no arquivo ou registrar na
+        // Central
     }
 
     public List<Voo> getVoosCadastrados() {
         return voosCadastrados;
+    }
+
+    public void salvarVoosEmArquivo() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("dados/voos.csv"))) {
+            writer.println("id,avião,destino,horarioSaida,horarioChegada,piloto");
+
+            for (Voo voo : voosCadastrados) {
+                writer.printf("%s,%s,%s,%s,%s,%s%n",
+                        voo.getAviao().getIdentificador(),
+                        voo.getAviao().getTipo().getModelo(),
+                        voo.getDestino().name(),
+                        voo.getHorarioSaida(),
+                        voo.getHorarioChegada(),
+                        voo.getPiloto().getNome());
+            }
+
+            System.out.println("Voos salvos em 'dados/voos.csv'.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar voos: " + e.getMessage());
+        }
     }
 
     // Funções específicas
@@ -64,4 +88,3 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
         /* ... */ }
 
 }
-

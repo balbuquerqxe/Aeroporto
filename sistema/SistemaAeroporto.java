@@ -1,7 +1,8 @@
+package sistema;
+
 import aviao.Aviao;
 import comunicacao.CentralComunicacao;
 import enums.ClassePassagem;
-import enums.TipoAviao;
 import enums.TipoFuncionario;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,14 +19,14 @@ import visual.TelaInicial;
 public class SistemaAeroporto {
     
     public static List<Piloto> pilotosDisponiveis = new ArrayList<>();
+    public static List<Aviao> avioes = Aviao.carregarDeCSV("dados/avioes.csv");
 
     public static void main(String[] args) {
         inicializarChatCompartilhado();
         carregarMensagensIniciais();
         carregarFuncionarios();
         carregarPassageiros();
-        carregarAvioes();
-
+        
         SwingUtilities.invokeLater(() -> new TelaInicial().setVisible(true));
     }
 
@@ -123,39 +124,6 @@ public class SistemaAeroporto {
             }
         } catch (IOException e) {
             System.out.println("Erro ao carregar mensagens iniciais: " + e.getMessage());
-        }
-    }
-
-    private static void carregarAvioes() {
-        try (BufferedReader br = new BufferedReader(new FileReader("dados/avioes.csv"))) {
-            String linha;
-            boolean primeiraLinha = true;
-
-            while ((linha = br.readLine()) != null) {
-                if (primeiraLinha) {
-                    primeiraLinha = false;
-                    continue;
-                }
-
-                String[] partes = linha.split(",");
-                if (partes.length >= 3) {
-                    String tipoStr = partes[1].trim().toUpperCase();
-                    String identificacao = partes[2].trim();
-
-                    try {
-                        TipoAviao tipo = TipoAviao.valueOf(tipoStr);
-                        Aviao aviao = new Aviao(identificacao, tipo);
-
-                        // Aqui você decide onde guardar. Exemplo: CentralAvioes.registrar(aviao);
-                        System.out.println("Avião carregado: " + aviao);
-
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("Tipo de avião inválido: " + tipoStr);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Erro ao carregar aviões: " + e.getMessage());
         }
     }
 

@@ -13,6 +13,10 @@ public class Piloto extends Funcionario {
         System.out.println("Piloto: " + nome);
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     @Override
     public void executarFuncao() {
         verEscala();
@@ -21,4 +25,10 @@ public class Piloto extends Funcionario {
     public void verEscala() {
         // lógica de consulta do próximo voo
     }
+
+    @Override
+    public String toString() {
+        return getNome() + " - Matrícula: " + getMatricula();
+    }
+
 }
