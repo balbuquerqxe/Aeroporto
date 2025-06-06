@@ -23,3 +23,7 @@ Administrativo -> Julia | Mensagem: tonta!
 João -> Administrativo | Mensagem: affff
 
 Mathew -> Administrativo | Mensagem: OIII
+
+João -> Administrativo | Mensagem: Onde é o voo?
+
+Administrativo -> João | Mensagem: No aeroporto idiota!
