@@ -1,4 +1,4 @@
-package visual.administrativo;
+package visual.funcionarios.administrativo;
 
 import comunicacao.CentralComunicacao;
 import comunicacao.Comunicavel;

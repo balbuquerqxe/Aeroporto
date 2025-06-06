@@ -4,7 +4,6 @@ import comunicacao.CentralComunicacao;
 import java.awt.*;
 import javax.swing.*;
 import pessoas.Administrativo;
-import visual.administrativo.TelaChatDuvidasAdministrativo;
 
 public class TelaAdministrativo extends JFrame {
 

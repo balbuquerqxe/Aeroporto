@@ -2,7 +2,6 @@ package visual.funcionarios;
 
 import dados.LeitorUsuarios;
 import java.awt.*;
-import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import pessoas.Administrativo;
@@ -69,9 +68,7 @@ public class LoginFuncionario extends JFrame {
         entrar.addActionListener(e -> {
             String matricula = matriculaField.getText().trim();
             String senha = new String(senhaField.getPassword()).trim();
-
-            Map<String, String> funcionarios = LeitorUsuarios.carregarMatriculasESenhas("dados/funcionarios.csv");
-
+            
             String[] dados = LeitorUsuarios.buscarFuncionarioCompleto("dados/funcionarios.csv", matricula);
 
             if (dados != null && dados[5].equals(senha)) {
