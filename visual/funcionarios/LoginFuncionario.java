@@ -2,6 +2,7 @@ package visual.funcionarios;
 
 import dados.LeitorUsuarios;
 import visual.TelaInicial;
+import visual.funcionarios.administrativo.TelaAdministrativo;
 
 import java.awt.*;
 import java.util.Map;
