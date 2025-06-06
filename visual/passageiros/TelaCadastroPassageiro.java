@@ -1,9 +1,11 @@
 package visual.passageiros;
 
+import enums.ClassePassagem;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.*;
+import pessoas.Passageiro;
 import visual.TelaInicial;
 
 public class TelaCadastroPassageiro extends JFrame {
@@ -36,7 +38,7 @@ public class TelaCadastroPassageiro extends JFrame {
         JPasswordField senhaField = new JPasswordField();
         adicionarCampoPersonalizado("Senha:", senhaField, painelCentral);
 
-        JComboBox<String> classeBox = new JComboBox<>(new String[]{"ECONOMICA", "EXECUTIVA", "INDEFINIDA"});
+        JComboBox<String> classeBox = new JComboBox<>(new String[] { "ECONOMICA", "EXECUTIVA", "INDEFINIDA" });
         adicionarCampoPersonalizado("Classe:", classeBox, painelCentral);
 
         // Botão Confirmar
@@ -53,7 +55,7 @@ public class TelaCadastroPassageiro extends JFrame {
             String cpf = cpfField.getText().trim();
             String data = dataField.getText().trim();
             String senha = new String(senhaField.getPassword()).trim();
-            String classe = (String) classeBox.getSelectedItem();
+            String classeStr = (String) classeBox.getSelectedItem();
 
             if (nome.isEmpty() || cpf.isEmpty() || data.isEmpty() || senha.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos corretamente.");
@@ -63,7 +65,13 @@ public class TelaCadastroPassageiro extends JFrame {
             String id = String.valueOf(System.currentTimeMillis());
 
             try (FileWriter fw = new FileWriter("dados/passageiros.csv", true)) {
-                fw.write(id + "," + nome + "," + cpf + "," + data + "," + senha + "," + classe + "\n");
+                fw.write(id + "," + nome + "," + cpf + "," + data + "," + senha + "," + classeStr + "\n");
+
+                // Criar o objeto Passageiro e registrar na Central
+                ClassePassagem classePassagem = ClassePassagem.valueOf(classeStr);
+                Passageiro novoPassageiro = new Passageiro(id, nome, cpf, data, senha, classePassagem);
+                comunicacao.CentralComunicacao.registrar(novoPassageiro);
+
                 JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
                 dispose();
             } catch (IOException ex) {

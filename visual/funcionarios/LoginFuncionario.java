@@ -1,13 +1,13 @@
 package visual.funcionarios;
 
 import dados.LeitorUsuarios;
-import visual.TelaInicial;
-import visual.funcionarios.administrativo.TelaAdministrativo;
-
 import java.awt.*;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import pessoas.Administrativo;
+import visual.TelaInicial;
+import visual.funcionarios.administrativo.TelaAdministrativo;
 
 public class LoginFuncionario extends JFrame {
 
@@ -74,31 +74,36 @@ public class LoginFuncionario extends JFrame {
 
             String[] dados = LeitorUsuarios.buscarFuncionarioCompleto("dados/funcionarios.csv", matricula);
 
-            if (dados != null && dados[4].equals(senha)) {
-                String tipo = dados[6].toUpperCase(); // Supondo que tipo esteja na sétima coluna
-
+            if (dados != null && dados[5].equals(senha)) {
+                String tipo = dados[6].toUpperCase(); // tipo na sétima coluna
                 JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
 
                 switch (tipo) {
                     case "PILOTO":
+                        // implementar depois
                         break;
                     case "COMISSARIO":
+                        // implementar depois
                         break;
                     case "ADMINISTRATIVO":
-                        String nomeFuncionario = LeitorUsuarios.buscarNomePorMatricula("dados/funcionarios.csv",
-                                matricula);
-                        new TelaAdministrativo(nomeFuncionario).setVisible(true);
+                        Administrativo admin = new Administrativo(
+                            dados[0], // id
+                            dados[1], // nome
+                            dados[2], // cpf
+                            dados[3], // dataNascimento
+                            dados[5], // senha
+                            dados[4]  // matricula
+                        );
+                        comunicacao.CentralComunicacao.registrar(admin);
+                        new TelaAdministrativo(admin).setVisible(true);
                         dispose();
                         break;
                     default:
                         JOptionPane.showMessageDialog(this, "Tipo de funcionário desconhecido.");
                 }
-
-                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Matrícula ou senha inválidos.");
             }
-
         });
 
         // Botão voltar
@@ -152,5 +157,4 @@ public class LoginFuncionario extends JFrame {
         botao.setFocusPainted(false);
         botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 1));
     }
-
 }
