@@ -1,10 +1,9 @@
 package visual.passageiros;
 
 import comunicacao.CentralComunicacao;
-import pessoas.Passageiro;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+import pessoas.Passageiro;
 
 public class TelaPassageiro extends JFrame {
 
@@ -25,14 +24,14 @@ public class TelaPassageiro extends JFrame {
         botoes.setBorder(BorderFactory.createEmptyBorder(20, 40, 40, 40));
         botoes.setBackground(Color.decode("#e6f0ff"));
 
-        String[] opcoes = {"Consultar Voos", "Reservar Poltrona", "Voltar"};
+        String[] opcoes = { "Consultar Voos", "Reservar Poltrona", "Enviar Dúvida", "Voltar" };
 
         for (String texto : opcoes) {
             JButton botao = new JButton(texto);
             botao.setFocusPainted(false);
             botao.setFont(new Font("SansSerif", Font.PLAIN, 14));
             botao.setBackground(Color.decode("#0052cc"));
-            botao.setForeground(Color.WHITE);
+            botao.setForeground(Color.decode("#003366"));
             botoes.add(botao);
 
             switch (texto) {
@@ -44,14 +43,23 @@ public class TelaPassageiro extends JFrame {
                     break;
                 case "Consultar Voos":
                     botao.addActionListener(e -> {
-                        JOptionPane.showMessageDialog(this, "Funcionalidade de consulta de voos ainda não implementada.");
+                        JOptionPane.showMessageDialog(this,
+                                "Funcionalidade de consulta de voos ainda não implementada.");
                     });
                     break;
                 case "Reservar Poltrona":
                     botao.addActionListener(e -> {
-                        JOptionPane.showMessageDialog(this, "Funcionalidade de reserva de poltrona ainda não implementada.");
+                        JOptionPane.showMessageDialog(this,
+                                "Funcionalidade de reserva de poltrona ainda não implementada.");
                     });
                     break;
+
+                case "Enviar Dúvida":
+                    botao.addActionListener(e -> {
+                        new TelaChatPassageiro(passageiro).setVisible(true);
+                    });
+                    break;
+
             }
         }
 

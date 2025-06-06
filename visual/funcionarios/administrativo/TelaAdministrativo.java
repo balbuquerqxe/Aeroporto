@@ -47,11 +47,9 @@ public class TelaAdministrativo extends JFrame {
                 case "Voltar":
                     botao.addActionListener(e -> {
                         dispose();
-                        JOptionPane.showMessageDialog(this, "Voltando para o login.");
-                        new visual.funcionarios.LoginFuncionario().setVisible(true);
+                        new visual.TelaInicial().setVisible(true);
                     });
                     break;
-                // Adicione os demais listeners aqui se quiser.
             }
         }
 

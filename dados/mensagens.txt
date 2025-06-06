@@ -1,5 +1,19 @@
-[Bruna] Olá, gostaria de saber onde posso consultar meu voo.
-[Lucas] Estou com dúvidas sobre a bagagem despachada.
-[Julia] O embarque é no terminal 1 ou 2?
-
 Administrativo -> Bruna | Mensagem: Você pode consultar no site.
+
+Julia -> ADMINISTRADOR | Mensagem: Qual é a cor do avião?
+
+Administrativo -> Julia | Mensagem: Azul idiota
+
+Julia -> ADMINISTRADOR | Mensagem: Obgda!
+
+Administrativo -> Lucas | Mensagem: O embarque será no terminal 1.
+
+Julia -> ADMINISTRADOR | Mensagem: Qual é o tamanho do avião?
+
+Administrativo -> Julia | Mensagem: muito grande
+
+Administrativo -> Julia | Mensagem: Sua boba
+
+João -> Administrativo | Mensagem: Eu nn sou boba!
+
+Administrativo -> João | Mensagem: Oi!
