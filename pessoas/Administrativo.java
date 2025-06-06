@@ -3,8 +3,8 @@ package pessoas;
 // Administrativo.java
 public class Administrativo extends Funcionario {
 
-    public Administrativo(String id, String nome, String cpf, String dataNascimento, String matricula) {
-        super(id, nome, cpf, dataNascimento, matricula);
+    public Administrativo(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
+        super(id, nome, cpf, dataNascimento, matricula, senha);
     }
 
     @Override

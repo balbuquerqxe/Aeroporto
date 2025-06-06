@@ -6,8 +6,8 @@ import enums.ClassePassagem;
 public class Passageiro extends Pessoa {
     private ClassePassagem classePassagem;
 
-    public Passageiro(String id, String nome, String cpf, String dataNascimento, ClassePassagem classePassagem) {
-        super(id, nome, cpf, dataNascimento);
+    public Passageiro(String id, String nome, String cpf, String dataNascimento, String senha, ClassePassagem classePassagem) {
+        super(id, nome, cpf, dataNascimento, senha);
         this.classePassagem = classePassagem;
     }
 

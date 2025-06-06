@@ -3,8 +3,8 @@ package pessoas;
 // Piloto.java
 public class Piloto extends Funcionario {
 
-    public Piloto(String id, String nome, String cpf, String dataNascimento, String matricula) {
-        super(id, nome, cpf, dataNascimento, matricula);
+    public Piloto(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
+        super(id, nome, cpf, dataNascimento, matricula, senha);
     }
 
     @Override
