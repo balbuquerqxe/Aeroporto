@@ -17,3 +17,9 @@ Administrativo -> Julia | Mensagem: Sua boba
 João -> Administrativo | Mensagem: Eu nn sou boba!
 
 Administrativo -> João | Mensagem: Oi!
+
+Administrativo -> Julia | Mensagem: tonta!
+
+João -> Administrativo | Mensagem: affff
+
+Mathew -> Administrativo | Mensagem: OIII
