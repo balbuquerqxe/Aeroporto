@@ -4,9 +4,11 @@ import aviao.GerenciadorDeVoos;
 import aviao.Voo;
 import comunicacao.Comunicavel;
 import enums.TipoFuncionario;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,17 +60,38 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
     }
 
     public void salvarVoosEmArquivo() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("dados/voos.csv"))) {
-            writer.println("id,avião,destino,horarioSaida,horarioChegada,piloto");
+        File arquivo = new File("dados/voos.csv");
+        boolean arquivoExiste = arquivo.exists();
+        boolean arquivoVazio = arquivo.length() == 0;
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivo, true))) { // append = true
+            // Escreve cabeçalho apenas se o arquivo estiver vazio
+            if (!arquivoExiste || arquivoVazio) {
+                writer.println("id,avião,destino,dataSaida,horaSaida,dataChegada,horaChegada,piloto");
+            }
+
+            DateTimeFormatter dataFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
 
             for (Voo voo : voosCadastrados) {
-                writer.printf("%s,%s,%s,%s,%s,%s%n",
-                        voo.getAviao().getIdentificador(),
-                        voo.getAviao().getTipo().getModelo(),
-                        voo.getDestino().name(),
-                        voo.getHorarioSaida(),
-                        voo.getHorarioChegada(),
-                        voo.getPiloto().getNome());
+                String idAviao = voo.getAviao().getIdentificador();
+                String modeloAviao = voo.getAviao().getTipo().getModelo();
+                String destino = voo.getDestino().name();
+                String dataSaida = voo.getHorarioSaida().toLocalDate().format(dataFormat);
+                String horaSaida = voo.getHorarioSaida().toLocalTime().format(horaFormat);
+                String dataChegada = voo.getHorarioChegada().toLocalDate().format(dataFormat);
+                String horaChegada = voo.getHorarioChegada().toLocalTime().format(horaFormat);
+                String piloto = voo.getPiloto().getNome();
+
+                writer.printf("%s,%s,%s,%s,%s,%s,%s,%s%n",
+                        idAviao,
+                        modeloAviao,
+                        destino,
+                        dataSaida,
+                        horaSaida,
+                        dataChegada,
+                        horaChegada,
+                        piloto);
             }
 
             System.out.println("Voos salvos em 'dados/voos.csv'.");

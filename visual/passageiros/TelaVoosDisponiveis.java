@@ -11,13 +11,28 @@ public class TelaVoosDisponiveis extends JFrame {
 
     public TelaVoosDisponiveis() {
         setTitle("Voos Disponíveis");
-        setSize(700, 400);
+        setSize(800, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        String[] colunas = {"ID", "Avião", "Destino", "Saída", "Chegada", "Piloto"};
-        DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
+        String[] colunas = { "ID", "Avião", "Destino", "Data Saída", "Horário Saída", "Data Chegada", "Horário Chegada",
+                "Piloto", "Foto do Piloto" };
+        DefaultTableModel modelo = new DefaultTableModel(null, colunas) {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                if (column == 8)
+                    return ImageIcon.class; // coluna da foto
+                return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // deixar tabela não editável
+            }
+        };
+
         JTable tabela = new JTable(modelo);
+        tabela.setRowHeight(60);
         JScrollPane scroll = new JScrollPane(tabela);
 
         // Carrega os dados do arquivo CSV
@@ -32,8 +47,20 @@ public class TelaVoosDisponiveis extends JFrame {
                 }
 
                 String[] partes = linha.split(",");
-                if (partes.length >= 6) {
-                    modelo.addRow(partes);
+                if (partes.length >= 8) {
+                    String piloto = partes[7].trim();
+
+                    // Caminho da imagem do piloto
+                    String caminhoImagem = "imagens/" + piloto + ".jpg";
+                    ImageIcon icone = new ImageIcon(caminhoImagem);
+                    Image imgRedimensionada = icone.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                    ImageIcon finalIcone = new ImageIcon(imgRedimensionada);
+
+                    // Adiciona linha com imagem
+                    modelo.addRow(new Object[] {
+                            partes[0], partes[1], partes[2], partes[3],
+                            partes[4], partes[5], partes[6], piloto, finalIcone
+                    });
                 }
             }
         } catch (IOException e) {
