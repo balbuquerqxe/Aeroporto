@@ -5,7 +5,7 @@ import java.util.*;
 
 public class LeitorUsuarios {
 
-    public static Map<String, String> carregarUsuarios(String caminhoArquivo) {
+    public static Map<String, String> carregarMatriculasESenhas(String caminhoArquivo) {
         Map<String, String> usuarios = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
@@ -19,10 +19,11 @@ public class LeitorUsuarios {
                 }
 
                 String[] partes = linha.split(",");
-                if (partes.length == 2) {
-                    String usuario = partes[0].trim();
-                    String senha = partes[1].trim();
-                    usuarios.put(usuario, senha);
+
+                if (partes.length >= 7) {
+                    String senha = partes[4].trim(); // 5ª coluna: senha
+                    String matricula = partes[5].trim(); // 6ª coluna: matrícula
+                    usuarios.put(matricula, senha);
                 }
             }
 
@@ -32,4 +33,34 @@ public class LeitorUsuarios {
 
         return usuarios;
     }
+
+    public static Map<String, String> carregarCpfsESenhas(String caminhoArquivo) {
+        Map<String, String> passageiros = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
+            String linha;
+            boolean primeiraLinha = true;
+
+            while ((linha = br.readLine()) != null) {
+                if (primeiraLinha) {
+                    primeiraLinha = false;
+                    continue;
+                }
+
+                String[] partes = linha.split(",");
+
+                if (partes.length >= 6) {
+                    String cpf = partes[2].trim(); // 3ª coluna
+                    String senha = partes[4].trim(); // 5ª coluna
+                    passageiros.put(cpf, senha);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Erro ao ler passageiros.csv: " + e.getMessage());
+        }
+
+        return passageiros;
+    }
+
 }
