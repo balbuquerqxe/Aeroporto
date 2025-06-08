@@ -15,8 +15,4 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
         this.senha = senha;
     }
-
-    public abstract void exibirInformacoes();
-
-    // getters e setters podem ser adicionados conforme necessidade
 }

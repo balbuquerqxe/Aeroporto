@@ -5,29 +5,35 @@ public enum Destino {
     LONDRES("Londres", 9600),
     ROMA("Roma", 9300),
     CANCUN("Cancún", 7200),
-    NOVA_YORK("Nova York", 7700),
+    CHICAGO("Chicago", 8350),
     LISBOA("Lisboa", 7800),
-    BUENOS_AIRES("Buenos Aires", 2200),
     SANTIAGO("Santiago", 3000),
     DUBAI("Dubai", 12400),
     TÓQUIO("Tóquio", 18500);
 
+    // Nome da cidade de destino.
     private final String nome;
+
+    // Disnt6ancia em km até o destino.
     private final int distanciaKm;
 
+    // Inicialização do destino.
     Destino(String nome, int distanciaKm) {
         this.nome = nome;
         this.distanciaKm = distanciaKm;
     }
 
+    // Retorna o nome da cidade.
     public String getNome() {
         return nome;
     }
 
+    // Retorna a distância até o destino.
     public int getDistanciaKm() {
         return distanciaKm;
     }
 
+    // Retorna as informações sobre o destino.
     @Override
     public String toString() {
         return nome + " (" + distanciaKm + " km)";

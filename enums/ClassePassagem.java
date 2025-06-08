@@ -1,6 +1,6 @@
 package enums;
 
-// ClassePassagem.java
+// Classe do passageiro.
 public enum ClassePassagem {
     ECONOMICA,
     EXECUTIVA,

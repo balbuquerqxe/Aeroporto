@@ -8,11 +8,6 @@ public class Piloto extends Funcionario {
         super(id, nome, cpf, dataNascimento, matricula, senha, TipoFuncionario.PILOTO);
     }
 
-    @Override
-    public void exibirInformacoes() {
-        System.out.println("Piloto: " + nome);
-    }
-
     public String getNome() {
         return this.nome;
     }

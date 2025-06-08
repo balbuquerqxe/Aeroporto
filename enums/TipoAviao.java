@@ -7,13 +7,20 @@ public enum TipoAviao {
     BOEING_787("Boeing 787 Dreamliner", 10, 2, 900, 0.25, 0.60),
     AIRBUS_A380("Airbus A380", 12, 4, 900, 0.30, 0.70);
 
+    // Modelo do avião.
     private final String modelo;
+    // Quantidade de poltornas econômicas.
     private final int poltronasEconomica;
+    // Quantidade de poltronas executivas.
     private final int poltronasExecutiva;
+    // Velocidade média do avião.
     private final int velocidadeMediaKmH;
+    // Preço por km do avião para passageiros econômicos.
     private final double precoPorKmEconomica;
+    // Preço por km do avião para passageiros executivos.
     private final double precoPorKmExecutiva;
 
+    // Inicialização do tipo de avião.
     TipoAviao(String modelo, int economica, int executiva, int velocidadeMedia,
               double precoEconomica, double precoExecutiva) {
         this.modelo = modelo;
@@ -24,26 +31,32 @@ public enum TipoAviao {
         this.precoPorKmExecutiva = precoExecutiva;
     }
 
+    // Retorna o modelo do avião.
     public String getModelo() {
         return modelo;
     }
 
+    // Retorna a quantidade de poltronas econômicas.
     public int getPoltronasEconomicas() {
         return poltronasEconomica;
     }
 
+    // Retorna a quantidade de poltronas executivas.
     public int getPoltronasExecutivas() {
         return poltronasExecutiva;
     }
 
+    // Retorna a velocidade média.
     public int getVelocidadeMediaKmH() {
         return velocidadeMediaKmH;
     }
 
+    // Retorna o preço por km da poltrona econômica.
     public double getPrecoPorKmEconomica() {
         return precoPorKmEconomica;
     }
 
+    // Retorna o preço por km da poltrona executiva.
     public double getPrecoPorKmExecutiva() {
         return precoPorKmExecutiva;
     }

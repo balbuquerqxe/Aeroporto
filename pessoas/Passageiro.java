@@ -13,11 +13,6 @@ public class Passageiro extends Pessoa implements Comunicavel {
     }
 
     @Override
-    public void exibirInformacoes() {
-        System.out.println("Passageiro: " + nome + " | Classe: " + classePassagem);
-    }
-
-    @Override
     public void receberMensagem(String mensagem) {
         System.out.println("Mensagem para Passageiro " + nome + ": " + mensagem);
     }

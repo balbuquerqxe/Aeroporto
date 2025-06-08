@@ -9,11 +9,6 @@ public class Comissario extends Funcionario {
     }
 
     @Override
-    public void exibirInformacoes() {
-        System.out.println("Comissário: " + nome);
-    }
-
-    @Override
     public void executarFuncao() {
         verEscala();
     }

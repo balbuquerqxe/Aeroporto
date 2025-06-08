@@ -14,20 +14,16 @@ import java.util.List;
 
 public class Administrativo extends Funcionario implements Comunicavel, GerenciadorDeVoos {
 
+    // Lista de voos cadastrados pelo administrativo.
     private List<Voo> voosCadastrados = new ArrayList<>();
 
+    // Inicialização do funcionário administrativo.
     public Administrativo(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
         super(id, nome, cpf, dataNascimento, matricula, senha, TipoFuncionario.ADMINISTRATIVO);
     }
 
     @Override
-    public void exibirInformacoes() {
-        System.out.println("Funcionário Administrativo: " + nome);
-    }
-
-    @Override
     public void executarFuncao() {
-        // tarefas administrativas
     }
 
     // Métodos da interface Comunicavel
