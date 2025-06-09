@@ -113,6 +113,7 @@ public class Voo {
         return precoExe;
     }  
 
+    // O que ficará escrito nos relatórios dos voos.
     @Override
     public String toString() {
         return "Voo para " + destino.name() + " | Saída: " + horarioSaida +

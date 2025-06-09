@@ -27,3 +27,7 @@ Mathew -> Administrativo | Mensagem: OIII
 João -> Administrativo | Mensagem: Onde é o voo?
 
 Administrativo -> João | Mensagem: No aeroporto idiota!
+
+Tereza -> Administrativo | Mensagem: Tem lanche no avião?
+
+Administrativo -> Tereza | Mensagem: Tem! Muio gostosos!
