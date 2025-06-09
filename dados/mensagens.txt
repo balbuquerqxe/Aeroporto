@@ -31,3 +31,7 @@ Administrativo -> João | Mensagem: No aeroporto idiota!
 Tereza -> Administrativo | Mensagem: Tem lanche no avião?
 
 Administrativo -> Tereza | Mensagem: Tem! Muio gostosos!
+
+Fabricio Karasz -> Administrativo | Mensagem: Qual é a altitude máxima do voo?
+
+Administrativo -> Fabrício Karasz | Mensagem: 1000000000 m
