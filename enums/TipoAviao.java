@@ -5,7 +5,9 @@ public enum TipoAviao {
     AIRBUS_A320("Airbus A320", 12, 2, 830, 0.22, 0.55),
     EMBRAER_E195("Embraer E195", 16, 4, 820, 0.18, 0.45),
     BOEING_787("Boeing 787 Dreamliner", 10, 2, 900, 0.25, 0.60),
-    AIRBUS_A380("Airbus A380", 12, 4, 900, 0.30, 0.70);
+    AIRBUS_A380("Airbus A380", 12, 4, 900, 0.30, 0.70),
+    AIRBUS_A321neo("Airbus A321neo", 200, 12, 833, 0.18, 0.48),
+    LEARJET_35("Learjet 35", 0, 8, 872, 0, 2.0);
 
     // Modelo do avião.
     private final String modelo;
