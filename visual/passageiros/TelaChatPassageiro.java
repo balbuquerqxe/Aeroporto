@@ -15,7 +15,7 @@ public class TelaChatPassageiro extends JFrame {
         this.passageiro = passageiro;
 
         setTitle("Enviar Dúvida");
-        setSize(450, 400);
+        setSize(600, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(Color.decode("#e6f0ff"));

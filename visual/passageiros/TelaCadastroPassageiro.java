@@ -12,7 +12,7 @@ public class TelaCadastroPassageiro extends JFrame {
 
     public TelaCadastroPassageiro() {
         setTitle("Cadastro de Passageiro");
-        setSize(420, 550);
+        setSize(420, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(Color.decode("#e6f0ff"));
@@ -46,7 +46,7 @@ public class TelaCadastroPassageiro extends JFrame {
         confirmar.setAlignmentX(Component.LEFT_ALIGNMENT);
         confirmar.setMaximumSize(new Dimension(200, 40));
         confirmar.setBackground(Color.decode("#0052cc"));
-        confirmar.setForeground(Color.decode("#003366"));
+        confirmar.setForeground(Color.WHITE);
         confirmar.setFont(new Font("SansSerif", Font.BOLD, 14));
         confirmar.setFocusPainted(false);
 

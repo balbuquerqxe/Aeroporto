@@ -5,8 +5,10 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import pessoas.Administrativo;
+import pessoas.Piloto;
 import visual.TelaInicial;
 import visual.funcionarios.administrativo.TelaAdministrativo;
+import visual.funcionarios.piloto.TelaPiloto;
 import comunicacao.CentralComunicacao; // Importa CentralComunicacao
 
 public class LoginFuncionario extends JFrame {
@@ -78,9 +80,26 @@ public class LoginFuncionario extends JFrame {
 
                 switch (tipo) {
                     case "PILOTO":
-                        // implementar depois
-                        JOptionPane.showMessageDialog(this, "Funcionalidade de Piloto em desenvolvimento.", "Aguarde", JOptionPane.INFORMATION_MESSAGE);
+
+                        // O índice da senha e matrícula podem estar trocados aqui, verificar o CSV
+                        // Supondo que o CSV seja: id,nome,cpf,dataNascimento,matricula,senha,tipo
+                        Piloto piloto = new Piloto(
+                            dados[0], // id
+                            dados[1], // nome
+                            dados[2], // cpf
+                            dados[3], // dataNascimento
+                            dados[5], // senha (dados[5] se a senha for a sexta coluna)
+                            dados[4]  // matricula (dados[4] se a matricula for a quinta coluna)
+                        );
+                        // Registro na CentralComunicacao (importada)
+                        CentralComunicacao.registrar(piloto); 
+                        new TelaPiloto(piloto).setVisible(true);
+                        dispose();
                         break;
+
+
+                        // implementar depois
+                        //JOptionPane.showMessageDialog(this, "Funcionalidade de Piloto em desenvolvimento.", "Aguarde", JOptionPane.INFORMATION_MESSAGE);
                     case "COMISSARIO":
                         // implementar depois
                         JOptionPane.showMessageDialog(this, "Funcionalidade de Comissário em desenvolvimento.", "Aguarde", JOptionPane.INFORMATION_MESSAGE);

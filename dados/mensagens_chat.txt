@@ -1,0 +1,3 @@
+Leticia -> Administrativo | Mensagem: Onde  o banheiro mais préximo?
+Administrativo -> Letcia | Mensagem: Na sua casa
+Ana -> Leticia | Mensagem: OIii

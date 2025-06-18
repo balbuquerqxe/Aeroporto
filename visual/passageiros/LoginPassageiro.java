@@ -15,7 +15,8 @@ public class LoginPassageiro extends JFrame {
 
     public LoginPassageiro() {
         setTitle("Login - Passageiro");
-        setSize(400, 330);
+        // *** AJUSTE AQUI: Novo tamanho do JFrame para alinhar com outras telas ***
+        setSize(600, 450); 
         setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(Color.decode("#e6f0ff"));
@@ -27,14 +28,17 @@ public class LoginPassageiro extends JFrame {
         painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
         JLabel titulo = new JLabel("Acesso de Passageiro");
-        titulo.setFont(new Font("SansSerif", Font.BOLD, 18));
+        // *** AJUSTE AQUI: Fonte maior para o título ***
+        titulo.setFont(new Font("SansSerif", Font.BOLD, 26)); 
         titulo.setForeground(Color.decode("#003366"));
         titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titulo.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
+        // *** AJUSTE AQUI: Mais padding no título ***
+        titulo.setBorder(BorderFactory.createEmptyBorder(30, 0, 20, 0)); 
 
         // CPF
         JLabel cpfLabel = new JLabel("CPF:");
-        cpfLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        // *** AJUSTE AQUI: Fonte maior para labels ***
+        cpfLabel.setFont(new Font("SansSerif", Font.PLAIN, 16)); 
         JTextField cpfField = new JTextField(15);
         estilizarCampoTexto(cpfField);
 
@@ -50,7 +54,8 @@ public class LoginPassageiro extends JFrame {
 
         // Senha
         JLabel senhaLabel = new JLabel("Senha:");
-        senhaLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        // *** AJUSTE AQUI: Fonte maior para labels ***
+        senhaLabel.setFont(new Font("SansSerif", Font.PLAIN, 16)); 
         JPasswordField senhaField = new JPasswordField(15);
         estilizarCampoTexto(senhaField);
 
@@ -78,16 +83,14 @@ public class LoginPassageiro extends JFrame {
                 Passageiro passageiro = CentralComunicacao.getPassageiroPorCpf(cpf);
 
                 if (passageiro != null) {
-                    // Se o passageiro foi encontrado com sucesso
                     JOptionPane.showMessageDialog(this, "Login bem-sucedido! Bem-vindo, " + passageiro.getNome() + ".", "Login Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    new TelaPassageiro(passageiro).setVisible(true); // Exibe a TelaPassageiro
-                    dispose(); // Fecha a tela de login
+                    new TelaPassageiro(passageiro).setVisible(true);
+                    dispose();
                 } else {
-                    // Se o passageiro não foi encontrado, mesmo após o login de credenciais bem-sucedido
                     JOptionPane.showMessageDialog(this, "Erro ao carregar dados do passageiro. Por favor, tente novamente ou entre em contato com o suporte.", "Erro Interno", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "CPF ou senha inválidos.");
+                JOptionPane.showMessageDialog(this, "CPF ou senha inválidos.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -104,15 +107,20 @@ public class LoginPassageiro extends JFrame {
         estilizarBotaoLink(cadastrar);
         cadastrar.addActionListener(e -> {
             new TelaCadastroPassageiro().setVisible(true);
+            // Ao abrir a tela de cadastro, não fechar a de login para que o usuário possa voltar
+            // Se você quiser fechar, adicione dispose() aqui: dispose();
         });
 
         // Montando layout
         painelCentral.add(titulo);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 10)));
+        // *** AJUSTE AQUI: Mais espaço entre o título e os campos ***
+        painelCentral.add(Box.createRigidArea(new Dimension(0, 20))); 
         painelCentral.add(painelCpf);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 15)));
+        // *** AJUSTE AQUI: Mais espaço entre os campos ***
+        painelCentral.add(Box.createRigidArea(new Dimension(0, 20))); 
         painelCentral.add(painelSenha);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 20)));
+        // *** AJUSTE AQUI: Mais espaço antes do botão de entrar ***
+        painelCentral.add(Box.createRigidArea(new Dimension(0, 30))); 
         painelCentral.add(entrar);
 
         // Painel inferior com layout BorderLayout
@@ -134,43 +142,52 @@ public class LoginPassageiro extends JFrame {
         painelInferior.add(painelDireito, BorderLayout.EAST);
 
         // Adiciona à tela
+        add(painelCentral, BorderLayout.CENTER); 
         add(painelInferior, BorderLayout.SOUTH);
-        add(painelCentral, BorderLayout.CENTER);
-        add(painelInferior, BorderLayout.SOUTH);
-
     }
 
     private void estilizarCampoTexto(JTextField campo) {
-        campo.setMaximumSize(new Dimension(250, 30));
+        // *** AJUSTE AQUI: Aumentando o tamanho dos campos de texto ***
+        campo.setMaximumSize(new Dimension(350, 40)); 
+        campo.setPreferredSize(new Dimension(350, 40)); 
         campo.setBorder(BorderFactory.createCompoundBorder(
                 new LineBorder(Color.decode("#003366"), 1, true),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         campo.setBackground(Color.WHITE);
-        campo.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        // *** AJUSTE AQUI: Fonte maior para o texto dos campos ***
+        campo.setFont(new Font("SansSerif", Font.PLAIN, 16)); 
     }
 
     private void estilizarBotao(JButton botao) {
         botao.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botao.setBackground(Color.decode("#e6f0ff"));
-        botao.setForeground(Color.decode("#003366"));
-        botao.setFont(new Font("SansSerif", Font.BOLD, 16));
+        // *** AJUSTE AQUI: Fundo azul para o botão principal de ação (Entrar) ***
+        botao.setBackground(Color.decode("#0052cc")); 
+        botao.setForeground(Color.WHITE); 
+        // *** AJUSTE AQUI: Fonte maior para o botão Entrar ***
+        botao.setFont(new Font("SansSerif", Font.BOLD, 20)); 
         botao.setFocusPainted(false);
-        botao.setPreferredSize(new Dimension(150, 40));
-        botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2));
+        // *** AJUSTE AQUI: Tamanho maior para o botão Entrar ***
+        botao.setPreferredSize(new Dimension(300, 60)); 
+        botao.setMaximumSize(new Dimension(300, 60)); 
+        botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2)); 
     }
 
     private void estilizarBotaoVoltar(JButton botao) {
         botao.setBackground(Color.decode("#e6f0ff"));
         botao.setForeground(Color.decode("#003366"));
-        botao.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        // *** AJUSTE AQUI: Fonte maior para o botão Voltar ***
+        botao.setFont(new Font("SansSerif", Font.PLAIN, 16)); 
         botao.setFocusPainted(false);
+        // *** AJUSTE AQUI: Tamanho definido para o botão Voltar ***
+        botao.setPreferredSize(new Dimension(120, 45)); 
         botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 1));
     }
 
     private void estilizarBotaoLink(JButton botao) {
         botao.setBackground(Color.decode("#e6f0ff"));
         botao.setForeground(Color.decode("#0052cc"));
-        botao.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        // *** AJUSTE AQUI: Fonte maior para o botão de link ***
+        botao.setFont(new Font("SansSerif", Font.PLAIN, 14)); 
         botao.setFocusPainted(false);
         botao.setBorderPainted(false);
         botao.setContentAreaFilled(false);
