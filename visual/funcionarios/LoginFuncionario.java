@@ -7,12 +7,13 @@ import javax.swing.border.LineBorder;
 import pessoas.Administrativo;
 import visual.TelaInicial;
 import visual.funcionarios.administrativo.TelaAdministrativo;
+import comunicacao.CentralComunicacao; // Importa CentralComunicacao
 
 public class LoginFuncionario extends JFrame {
 
     public LoginFuncionario() {
         setTitle("Login - Funcionário");
-        setSize(400, 330);
+        setSize(600, 450); // Mantém o novo tamanho do JFrame
         setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(Color.decode("#e6f0ff"));
@@ -24,14 +25,14 @@ public class LoginFuncionario extends JFrame {
         painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
         JLabel titulo = new JLabel("Acesso de Funcionário");
-        titulo.setFont(new Font("SansSerif", Font.BOLD, 18));
+        titulo.setFont(new Font("SansSerif", Font.BOLD, 26)); // Aumentado para 26
         titulo.setForeground(Color.decode("#003366"));
         titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titulo.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
+        titulo.setBorder(BorderFactory.createEmptyBorder(30, 0, 20, 0)); // Ajustado padding
 
         // Matrícula
         JLabel matriculaLabel = new JLabel("Matrícula:");
-        matriculaLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        matriculaLabel.setFont(new Font("SansSerif", Font.PLAIN, 16)); // Aumentado para 16
         JTextField matriculaField = new JTextField(15);
         estilizarCampoTexto(matriculaField);
 
@@ -47,7 +48,7 @@ public class LoginFuncionario extends JFrame {
 
         // Senha
         JLabel senhaLabel = new JLabel("Senha:");
-        senhaLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        senhaLabel.setFont(new Font("SansSerif", Font.PLAIN, 16)); // Aumentado para 16
         JPasswordField senhaField = new JPasswordField(15);
         estilizarCampoTexto(senhaField);
 
@@ -71,35 +72,40 @@ public class LoginFuncionario extends JFrame {
             
             String[] dados = LeitorUsuarios.buscarFuncionarioCompleto("dados/funcionarios.csv", matricula);
 
-            if (dados != null && dados[4].equals(senha)) {
-                String tipo = dados[6].toUpperCase(); // tipo na sétima coluna
-                JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
+            if (dados != null && dados.length > 4 && dados[4].equals(senha)) { // Verifica dados.length para evitar IndexOutOfBounds
+                String tipo = dados[6].toUpperCase(); // tipo na sétima coluna (índice 6)
+                JOptionPane.showMessageDialog(this, "Login bem-sucedido!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
                 switch (tipo) {
                     case "PILOTO":
                         // implementar depois
+                        JOptionPane.showMessageDialog(this, "Funcionalidade de Piloto em desenvolvimento.", "Aguarde", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     case "COMISSARIO":
                         // implementar depois
+                        JOptionPane.showMessageDialog(this, "Funcionalidade de Comissário em desenvolvimento.", "Aguarde", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     case "ADMINISTRATIVO":
+                        // O índice da senha e matrícula podem estar trocados aqui, verificar o CSV
+                        // Supondo que o CSV seja: id,nome,cpf,dataNascimento,matricula,senha,tipo
                         Administrativo admin = new Administrativo(
                             dados[0], // id
                             dados[1], // nome
                             dados[2], // cpf
                             dados[3], // dataNascimento
-                            dados[5], // senha
-                            dados[4]  // matricula
+                            dados[5], // senha (dados[5] se a senha for a sexta coluna)
+                            dados[4]  // matricula (dados[4] se a matricula for a quinta coluna)
                         );
-                        comunicacao.CentralComunicacao.registrar(admin);
+                        // Registro na CentralComunicacao (importada)
+                        CentralComunicacao.registrar(admin); 
                         new TelaAdministrativo(admin).setVisible(true);
                         dispose();
                         break;
                     default:
-                        JOptionPane.showMessageDialog(this, "Tipo de funcionário desconhecido.");
+                        JOptionPane.showMessageDialog(this, "Tipo de funcionário desconhecido.", "Erro de Tipo", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Matrícula ou senha inválidos.");
+                JOptionPane.showMessageDialog(this, "Matrícula ou senha inválidos.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -113,11 +119,11 @@ public class LoginFuncionario extends JFrame {
 
         // Montagem do layout
         painelCentral.add(titulo);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 10)));
+        painelCentral.add(Box.createRigidArea(new Dimension(0, 20))); // Mais espaço
         painelCentral.add(painelMatricula);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 15)));
+        painelCentral.add(Box.createRigidArea(new Dimension(0, 20))); // Mais espaço
         painelCentral.add(painelSenha);
-        painelCentral.add(Box.createRigidArea(new Dimension(0, 20)));
+        painelCentral.add(Box.createRigidArea(new Dimension(0, 30))); // Mais espaço
         painelCentral.add(entrar);
 
         JPanel painelInferior = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -129,29 +135,34 @@ public class LoginFuncionario extends JFrame {
     }
 
     private void estilizarCampoTexto(JTextField campo) {
-        campo.setMaximumSize(new Dimension(250, 30));
+        // Aumentando o tamanho máximo para preencher melhor o espaço
+        campo.setMaximumSize(new Dimension(350, 40)); 
+        campo.setPreferredSize(new Dimension(350, 40)); // Definindo preferredSize também
         campo.setBorder(BorderFactory.createCompoundBorder(
                 new LineBorder(Color.decode("#003366"), 1, true),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         campo.setBackground(Color.WHITE);
-        campo.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        campo.setFont(new Font("SansSerif", Font.PLAIN, 16)); // Aumentado para 16
     }
 
     private void estilizarBotao(JButton botao) {
         botao.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botao.setBackground(Color.decode("#e6f0ff"));
-        botao.setForeground(Color.decode("#003366"));
-        botao.setFont(new Font("SansSerif", Font.BOLD, 16));
+        botao.setBackground(Color.decode("#0052cc")); // Fundo azul para o botão principal de ação
+        botao.setForeground(Color.WHITE); // Texto branco para melhor contraste
+        botao.setFont(new Font("SansSerif", Font.BOLD, 20)); // Aumentado para 20
         botao.setFocusPainted(false);
-        botao.setPreferredSize(new Dimension(150, 40));
-        botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2));
+        // Aumentando a largura e altura para o novo JFrame
+        botao.setPreferredSize(new Dimension(200, 60)); 
+        botao.setMaximumSize(new Dimension(200, 60)); // Define o tamanho máximo
+        botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2)); // Adiciona uma borda
     }
 
     private void estilizarBotaoVoltar(JButton botao) {
         botao.setBackground(Color.decode("#e6f0ff"));
         botao.setForeground(Color.decode("#003366"));
-        botao.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        botao.setFont(new Font("SansSerif", Font.PLAIN, 16)); // Aumentado para 16
         botao.setFocusPainted(false);
+        botao.setPreferredSize(new Dimension(120, 45)); // Ajuste de tamanho para o botão voltar
         botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 1));
     }
 }

@@ -35,3 +35,9 @@ Administrativo -> Tereza | Mensagem: Tem! Muio gostosos!
 Fabricio Karasz -> Administrativo | Mensagem: Qual é a altitude máxima do voo?
 
 Administrativo -> Fabrício Karasz | Mensagem: 1000000000 m
+
+Administrativo -> Tereza | Mensagem: oi
+
+Administrativo -> Victor | Mensagem: oi
+
+Gabi -> Administrativo | Mensagem: Como faço pra receber comida

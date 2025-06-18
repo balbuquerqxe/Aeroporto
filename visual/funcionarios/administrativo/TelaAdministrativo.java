@@ -10,7 +10,7 @@ public class TelaAdministrativo extends JFrame {
 
     public TelaAdministrativo(Administrativo funcionario) {
         setTitle("Painel Administrativo");
-        setSize(500, 400);
+        setSize(600, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.decode("#e6f0ff"));
@@ -34,9 +34,10 @@ public class TelaAdministrativo extends JFrame {
         for (String texto : opcoes) {
             JButton botao = new JButton(texto);
             botao.setFocusPainted(false);
-            botao.setFont(new Font("SansSerif", Font.PLAIN, 14));
+            botao.setFont(new Font("SansSerif", Font.PLAIN, 18));
             botao.setBackground(Color.decode("#0052cc"));
-            botao.setForeground(Color.decode("#003366"));
+            botao.setForeground(Color.WHITE);
+            botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2)); // Adiciona uma borda
             botoes.add(botao);
 
             switch (texto) {

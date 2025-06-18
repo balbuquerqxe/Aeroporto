@@ -11,11 +11,11 @@ import javax.swing.*;
 import pessoas.Administrativo;
 import pessoas.Piloto;
 
-public class TelaCadastrarVoos extends JFrame {
+public class TelaCadastrarVoos extends JFrame  {
 
     public TelaCadastrarVoos(Administrativo adm, List<Aviao> avioesDisponiveis, List<Piloto> pilotosDisponiveis) {
         setTitle("Cadastrar Voo");
-        setSize(500, 350);
+        setSize(600, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(7, 2, 10, 10));

@@ -75,10 +75,17 @@ public class LoginPassageiro extends JFrame {
             Map<String, String> passageiros = LeitorUsuarios.carregarCpfsESenhas("dados/passageiros.csv");
 
             if (passageiros.containsKey(cpf) && passageiros.get(cpf).equals(senha)) {
-                JOptionPane.showMessageDialog(this, "Login bem-sucedido! Bem-vindo, passageiro.");
                 Passageiro passageiro = CentralComunicacao.getPassageiroPorCpf(cpf);
-                new TelaPassageiro(passageiro).setVisible(true);
-                dispose();
+
+                if (passageiro != null) {
+                    // Se o passageiro foi encontrado com sucesso
+                    JOptionPane.showMessageDialog(this, "Login bem-sucedido! Bem-vindo, " + passageiro.getNome() + ".", "Login Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    new TelaPassageiro(passageiro).setVisible(true); // Exibe a TelaPassageiro
+                    dispose(); // Fecha a tela de login
+                } else {
+                    // Se o passageiro não foi encontrado, mesmo após o login de credenciais bem-sucedido
+                    JOptionPane.showMessageDialog(this, "Erro ao carregar dados do passageiro. Por favor, tente novamente ou entre em contato com o suporte.", "Erro Interno", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "CPF ou senha inválidos.");
             }
