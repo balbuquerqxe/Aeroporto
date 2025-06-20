@@ -13,6 +13,22 @@ public abstract class Funcionario extends Pessoa {
         this.tipo = tipo;
     }
 
+    public String getId() { 
+        return this.id; 
+    }
+
+    public String getNome() { 
+        return this.nome; 
+    }
+    public String getCpf() { 
+        return this.cpf; 
+    }
+    public String getDataNascimento() { 
+        return this.dataNascimento; 
+    }
+    public String getSenha() { 
+        return this.senha; 
+    }
     public String getMatricula() {
         return matricula;
     }

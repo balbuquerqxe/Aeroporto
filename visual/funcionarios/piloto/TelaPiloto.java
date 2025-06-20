@@ -5,6 +5,8 @@ import java.awt.*;
 import javax.swing.*;
 import pessoas.Piloto; // Importa a classe Piloto
 import visual.TelaInicial;
+import visual.funcionarios.piloto.TelaVoosDoPiloto;
+import visual.passageiros.TelaVoosDisponiveis;
 import sistema.SistemaAeroporto;
 
 
@@ -51,18 +53,13 @@ public class TelaPiloto extends JFrame {
                     });
                     break;
                 case "Consultar Próximos Voos":
-                    botao.addActionListener(e -> {
-                        // Implementar a TelaVoosPiloto ouu usar uma versão adaptada da TelaVoosDisponiveis
-                        JOptionPane.showMessageDialog(this, "Funcionalidade: Consultar Próximos Voos (em desenvolvimento)", "Aguarde", JOptionPane.INFORMATION_MESSAGE);
-                        // ex: new TelaVoosDoPiloto(piloto).setVisible(true);
-                    });
+                    botao.addActionListener(e -> new TelaVoosDoPiloto(piloto).setVisible(true));
                     break;
                 case "Ver Minhas Informações":
                     botao.addActionListener(e -> {
                         // Constrói a mensagem com as informações do piloto
                         String info = "ID: " + piloto.getId() + "\n" +
                                       "Nome: " + piloto.getNome() + "\n" +
-                                      "CPF: " + piloto.getCPF() + "\n" +
                                       "Data de Nascimento: " + piloto.getDataNascimento() + "\n" +
                                       "Matrícula: " + piloto.getMatricula(); // Assumindo que Piloto tem getMatricula()
                         
@@ -74,10 +71,5 @@ public class TelaPiloto extends JFrame {
 
         add(titulo, BorderLayout.NORTH);
         add(botoes, BorderLayout.CENTER);
-
-        // Opcional: Registrar o piloto na central de comunicação.
-        // Isso é útil se a CentralComunicacao mantém uma lista de usuários logados/ativos.
-        // Se o registro já acontece no LoginFuncionario, pode ser redundante aqui.
-        // CentralComunicacao.registrar(piloto);
     }
 }

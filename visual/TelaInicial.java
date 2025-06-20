@@ -63,11 +63,9 @@ public class TelaInicial extends JFrame {
         
         JLabel imagemLabel = new JLabel();
         if (iconeAviao != null) {
-            // Redimensiona para um tamanho maior, adequado ao novo JFrame
             Image imagemEscalada = iconeAviao.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Aumentado para 100x100
             imagemLabel.setIcon(new ImageIcon(imagemEscalada));
         } else {
-            // Fallback: pode adicionar um texto ou um ícone padrão aqui
             imagemLabel.setText("[AVIÃO]"); 
             imagemLabel.setForeground(Color.GRAY);
         }
