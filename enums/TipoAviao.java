@@ -4,9 +4,9 @@ public enum TipoAviao {
     BOEING_737MAX("Boeing 737 MAX", 14, 8, 850, 0.20, 0.50, 6000),
     AIRBUS_A320("Airbus A320", 12, 2, 830, 0.22, 0.55, 5280),
     EMBRAER_E195("Embraer E195", 16, 4, 820, 0.18, 0.45, 4260),
-    BOEING_787_9("Boeing 787-9 Dreamliner", 10, 2, 900, 0.25, 0.60, 14010),
-    AIRBUS_A380("Airbus A380", 12, 4, 900, 0.30, 0.70, 15200),
-    AIRBUS_A321neo("Airbus A321neo", 200, 12, 833, 0.18, 0.48, 7400),
+    BOEING_787_9("Boeing 787-9 Dreamliner", 280  , 12, 900, 0.25, 0.60, 14010),
+    AIRBUS_A380("Airbus A380", 780, 40, 900, 0.30, 0.70, 15200),
+    AIRBUS_A321NEO("Airbus A321neo", 200, 12, 833, 0.18, 0.48, 7400),
     LEARJET_35("Learjet 35", 0, 8, 872, 0, 2., 4300);
 
     // Modelo do avião.
