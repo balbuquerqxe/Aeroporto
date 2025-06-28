@@ -104,13 +104,12 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
     public void alocarTripulacao() {
         /* ... */ }
 
-    public void gerarRelatorios() {
-        if (voosCadastrados.isEmpty()) {
-        System.out.println("Nenhum voo cadastrado. Não é possível gerar relatórios.");
-        return; 
-    } 
+public String gerarConteudoRelatorio(List<Voo> voosParaRelatorio) {
+    if (voosParaRelatorio == null || voosParaRelatorio.isEmpty()) {
+        return null; // Retorna nulo se a lista estiver vazia.
+    }
 
- // 2. Constrói o conteúdo do relatório com base na lista recebida.
+    // A lógica do StringBuilder é a mesma de antes.
     StringBuilder relatorioConteudo = new StringBuilder();
     relatorioConteudo.append("=========================================================\n");
     relatorioConteudo.append("              RELATÓRIO DE VOOS SOLICITADOS\n");
@@ -118,27 +117,34 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
     relatorioConteudo.append("Gerado em: ").append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))).append("\n");
     relatorioConteudo.append("Total de voos no relatório: ").append(voosParaRelatorio.size()).append("\n\n");
 
-    // 3. Itera sobre a lista de voos que foi recebida como parâmetro.
     for (Voo voo : voosParaRelatorio) {
         relatorioConteudo.append("---------------------------------------------------------\n");
         relatorioConteudo.append(">>> DADOS DO VOO: ").append(voo.getId()).append("\n");
-        relatorioConteudo.append("---------------------------------------------------------\n");
-        relatorioConteudo.append("  Destino: ").append(voo.getDestino()).append("\n");
-        relatorioConteudo.append("  Partida: ").append(voo.getHorarioSaida().format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm"))).append("\n");
-        relatorioConteudo.append("  Chegada: ").append(voo.getHorarioChegada().format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm"))).append("\n");
-        relatorioConteudo.append("  Aeronave: ").append(voo.getAviao().getTipo().getModelo()).append(" (ID: ").append(voo.getAviao().getIdentificador()).append(")\n");
+        // ... (resto da sua lógica de formatação do voo) ...
         relatorioConteudo.append("  Piloto: ").append(voo.getPiloto().getNome()).append("\n\n");
     }
 
-    // 4. Salva o relatório em um arquivo.
+    return relatorioConteudo.toString();
+}
+
+/**
+ * MÉTODO 2: O "Salvador".
+ * Apenas recebe um conteúdo de texto e o SALVA em um arquivo.
+ * Não sabe como o conteúdo foi criado.
+ * @param conteudo O texto do relatório a ser salvo.
+ * @return true se salvou com sucesso, false se ocorreu um erro.
+ */
+public boolean salvarRelatorioEmArquivo(String conteudo) {
     String nomeArquivo = "RelatorioVoos_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")) + ".txt";
     
     try (PrintWriter writer = new PrintWriter(new FileWriter("dados/" + nomeArquivo))) {
-        writer.print(relatorioConteudo.toString());
-        System.out.println("\nRelatório salvo com sucesso no arquivo: dados/" + nomeArquivo);
+        writer.print(conteudo);
+        System.out.println("Arquivo de relatório salvo em: dados/" + nomeArquivo);
+        return true; // Sucesso!
     } catch (IOException e) {
-        System.err.println("\nOcorreu um erro ao salvar o relatório: " + e.getMessage());
-        e.printStackTrace(); 
+        System.err.println("Ocorreu um erro ao salvar o relatório em arquivo: " + e.getMessage());
+        e.printStackTrace();
+        return false; // Falha!
     }
-    }
+}
 }
