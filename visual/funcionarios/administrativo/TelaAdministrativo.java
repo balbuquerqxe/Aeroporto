@@ -27,7 +27,7 @@ public class TelaAdministrativo extends JFrame {
 
         String[] opcoes = {
                 "Cadastrar Voo", "Gerenciar Aviões",
-                "Alocar Tripulação", "Gerar Relatórios",
+                "Cancelar Voo", "Gerar Relatórios",
                 "Responder Perguntas", "Voltar"
         };
 
