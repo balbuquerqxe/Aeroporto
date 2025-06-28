@@ -55,6 +55,11 @@ public class TelaAdministrativo extends JFrame {
                         new TelaChatDuvidasAdministrativo(funcionario).setVisible(true);
                     });
                     break;
+                case "Gerar Relatórios":
+                    botao.addActionListener(e -> {
+                        new TelaGerarRelatorios(funcionario).setVisible(true);
+                    });
+                    break;
                 case "Voltar":
                     botao.addActionListener(e -> {
                         dispose();
