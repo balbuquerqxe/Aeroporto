@@ -238,9 +238,9 @@ public class TelaReservaPoltrona extends JFrame {
             return;
         }
 
-        // Gera um ID de reserva simples (timestamp com cpf)
+        // Gera um ID de reserva simples (timestamp)
         String cpfPassageiro = passageiroLogado.getCPF();
-        String idReserva = cpfPassageiro + "." + String.valueOf(System.currentTimeMillis());
+        String idReserva = String.valueOf(System.currentTimeMillis());
 
         try (FileWriter fw = new FileWriter(ARQUIVO_RESERVAS, true);
              BufferedWriter bw = new BufferedWriter(fw);
