@@ -64,10 +64,11 @@ public class TelaAdministrativo extends JFrame {
                         dispose();
                         new visual.TelaInicial().setVisible(true);
                     });
+                    break;
                 case "Cancelar Voo":
                     botao.addActionListener(e -> {
-                        dispose();
-                        new TelaCancelarVoos(funcionario, SistemaAeroporto.avioes, SistemaAeroporto.pilotosDisponiveis).setVisible(true);
+                        new TelaCancelarVoos(funcionario, this).setVisible(true);
+                        this.setVisible(false);
                     });
                     break;
             }

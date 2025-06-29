@@ -4,7 +4,11 @@ import aviao.GerenciadorDeVoos;
 import aviao.Voo;
 import comunicacao.Comunicavel;
 import enums.TipoFuncionario;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +23,43 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
 
     public Administrativo(String id, String nome, String cpf, String dataNascimento, String senha, String matricula) {
         super(id, nome, cpf, dataNascimento, matricula, senha, TipoFuncionario.ADMINISTRATIVO);
+    }
+
+    public boolean cancelarVooPorId(String idVoo) throws IOException {
+        File arquivoVoos = new File("dados/voos.csv");
+        if (!arquivoVoos.exists()) {
+            return false;
+        }
+
+        List<String> linhasMantidas = new ArrayList<>();
+        boolean vooEncontrado = false;
+
+        // Lê o arquivo e guarda as linhas que não correspondem ao ID a ser cancelado
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoVoos))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                // A primeira coluna do CSV é o ID
+                if (!linha.trim().startsWith(idVoo + ",")) {
+                    linhasMantidas.add(linha);
+                } else {
+                    vooEncontrado = true;
+                }
+            }
+        }
+
+        if (!vooEncontrado) {
+            return false; // Voo com o ID especificado não foi encontrado
+        }
+
+        // Reescreve o arquivo CSV com os voos restantes
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoVoos, false))) { // 'false' para sobrescrever
+            for (String linha : linhasMantidas) {
+                bw.write(linha);
+                bw.newLine();
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -136,6 +177,7 @@ public class Administrativo extends Funcionario implements Comunicavel, Gerencia
             return false;
         }
     }
+
 
     public void gerenciarAvioes() { /* ... */ }
     public void alocarTripulacao() { /* ... */ }
