@@ -105,14 +105,16 @@ classDiagram
     class TelaGerarRelatorios
     class TelaExibirRelatorio
 
-    interface Comunicavel {
-      +enviarMensagem(Comunicavel, String)
-      +receberMensagem(String)
-      +getNome() String
+    class Comunicavel {
+      <<interface>>
+      +enviarMensagem()
+      +receberMensagem()
+      +getNome()
     }
 
-    interface GerenciadorDeVoos {
-        +cadastrarVoo(Voo)
+    class GerenciadorDeVoos {
+      <<interface>>
+      +cadastrarVoo()
     }
 
     ' --- Relacionamentos ---
