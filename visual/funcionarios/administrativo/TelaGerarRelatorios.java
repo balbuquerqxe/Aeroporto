@@ -28,16 +28,11 @@ public class TelaGerarRelatorios extends JFrame {
 
     private Administrativo admin;
     private Map<JCheckBox, Voo> mapaVoosCheckBoxes = new HashMap<>();
-    private JFrame telaAnterior; // <-- Guarda a referência da tela que a chamou
+    private JFrame telaAnterior; 
 
-    /**
-     * Construtor modificado para aceitar a tela anterior como parâmetro.
-     * @param funcionario O funcionário administrativo.
-     * @param telaAnterior A tela que chamou esta janela.
-     */
     public TelaGerarRelatorios(Administrativo funcionario, JFrame telaAnterior) {
         this.admin = funcionario;
-        this.telaAnterior = telaAnterior; // <-- Armazena a tela anterior
+        this.telaAnterior = telaAnterior; 
 
         setTitle("Gerar Relatório de Voos");
         setSize(500, 600);
@@ -45,7 +40,6 @@ public class TelaGerarRelatorios extends JFrame {
         getContentPane().setBackground(Color.decode("#e6f0ff"));
         setLayout(new BorderLayout(10, 10));
 
-        // Lógica para fechar a janela e reabrir a anterior
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -54,7 +48,7 @@ public class TelaGerarRelatorios extends JFrame {
             }
         });
 
-        JLabel titulo = new JLabel("Selecione os Voos para o Relatório", SwingConstants.CENTER);
+        JLabel titulo = new JLabel("Selecione os voos para o relatório", SwingConstants.CENTER);
         titulo.setFont(new Font("SansSerif", Font.BOLD, 18));
         titulo.setForeground(Color.decode("#003366"));
         titulo.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -89,32 +83,26 @@ public class TelaGerarRelatorios extends JFrame {
         ));
         add(scrollPane, BorderLayout.CENTER);
 
-        // --- PAINEL DE BOTÕES MODIFICADO ---
         JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         painelBotoes.setBackground(Color.decode("#e6f0ff"));
         painelBotoes.setBorder(BorderFactory.createEmptyBorder(10, 20, 15, 20));
 
-        // Botão Voltar
         JButton botaoVoltar = new JButton("Voltar");
         botaoVoltar.setFont(new Font("SansSerif", Font.PLAIN, 16));
         botaoVoltar.addActionListener(e -> voltarParaTelaAnterior());
         painelBotoes.add(botaoVoltar);
 
-        // Botão Gerar Relatório
         JButton botaoGerar = new JButton("Gerar Relatório");
-        botaoGerar.setFont(new Font("SansSerif", Font.BOLD, 16));
+        botaoGerar.setFont(new Font("SansSerif", Font.PLAIN, 16));
         botaoGerar.setBackground(Color.decode("#0052cc"));
-        botaoGerar.setForeground(Color.WHITE);
+        titulo.setForeground(Color.decode("#003366"));
         botaoGerar.setPreferredSize(new Dimension(200, 40));
         botaoGerar.addActionListener(e -> gerarRelatorio());
         painelBotoes.add(botaoGerar);
         
         add(painelBotoes, BorderLayout.SOUTH);
     }
-    
-    /**
-     * Lógica para gerar o relatório.
-     */
+
     private void gerarRelatorio() {
         List<Voo> voosSelecionados = new ArrayList<>();
         for (Map.Entry<JCheckBox, Voo> entry : mapaVoosCheckBoxes.entrySet()) {
@@ -133,21 +121,17 @@ public class TelaGerarRelatorios extends JFrame {
         boolean salvouComSucesso = admin.salvarRelatorioEmArquivo(conteudoDoRelatorio);
         
         if (salvouComSucesso) {
-            JOptionPane.showMessageDialog(this, "Relatório salvo em arquivo com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            // Abre a tela de exibição e NÃO fecha a tela atual, permitindo visualizar e voltar.
+            JOptionPane.showMessageDialog(this, "Relatório gerado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             new TelaExibirRelatorio(conteudoDoRelatorio).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Ocorreu um erro ao salvar o arquivo do relatório.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    /**
-     * Esconde a tela atual e reexibe a tela anterior.
-     */
     private void voltarParaTelaAnterior() {
         if (telaAnterior != null) {
             telaAnterior.setVisible(true);
         }
-        dispose(); // Fecha esta janela.
+        dispose(); 
     }
 }

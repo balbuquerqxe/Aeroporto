@@ -1,0 +1,26 @@
+======================================================================
+                 RELATÓRIO DE VOOS
+======================================================================
+
+Gerado por: Juliana
+Data de Geração: 28/06/2025 22:18:00
+Total de Voos no Relatório: 1
+
+----------------------------------------------------------------------
+ID DO VOO:         c1ca4e2e-3b01-4951-8c1f-f32713cf87a2
+DESTINO:           Paris
+PILOTO:            Carlos
+
+AERONAVE:
+  - Modelo:        Boeing 737 MAX
+  - Identificador: PT-ABC
+
+HORÁRIOS:
+  - Data de Saída: 28/06/2025
+  - Hora de Saída: 10:00
+  - Data de Chegada: 28/06/2025
+  - Hora de Chegada: 21:04
+
+----------------------------------------------------------------------
+
+FIM DO RELATÓRIO.

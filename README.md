@@ -1,10 +1,10 @@
 # Sistema de Gerenciamento de Aeroporto
 
-Este projeto é um sistema para gerenciamento de um aeroporto, desenvolvido em Java com a biblioteca Swing para a interface gráfica. Ele permite a interação de diferentes tipos de usuários, como Passageiros e Funcionários (Administrativos e Pilotos), cada um com suas respectivas funcionalidades.
+Este projeto é um sistema para gerenciamento de um aeroporto, desenvolvido em Java com a biblioteca Swing para a interface gráfica. Ele permite a interação de diferentes tipos de usuários, como passageiros e funcionários (administrativos e pilotos), cada um com suas respectivas funcionalidades.
 
 ## Funcionalidades Principais
 
-  * **Autenticação de Usuários**: Telas de login separadas para Passageiros e Funcionários.
+  * **Autenticação de Usuários**: Telas de login separadas para passageiros e funcionários.
   * **Painel do Passageiro**:
       * Consultar voos disponíveis.
       * Reservar poltronas em voos.
@@ -124,3 +124,10 @@ classDiagram
     TelaGerarRelatorios ..> TelaExibirRelatorio : Exibe
     SistemaAeroporto ..> TelaInicial : Inicia
 ```
+
+### Explicação do Diagrama:
+
+  * **Herança**: As classes `Funcionario` e `Passageiro` herdam da classe base `Pessoa`. Por sua vez, `Piloto`, `Administrativo` e `Comissario` herdam de `Funcionario`.
+  * **Interfaces**: A interface `Comunicavel` é implementada por classes que podem interagir no chat, como `Passageiro` e `Administrativo`. A interface `GerenciadorDeVoos` define o contrato para cadastrar voos, implementado por `Administrativo`.
+  * **Associação**: Existe uma forte associação entre as classes de `visual` (as telas) e as classes de `pessoas` (os dados dos usuários). Por exemplo, a `TelaAdministrativo` precisa de um objeto `Administrativo` para funcionar.
+  * **Composição**: Um `Voo` é composto por um `Aviao` e um `Piloto`, indicando que um voo não existe sem eles.
