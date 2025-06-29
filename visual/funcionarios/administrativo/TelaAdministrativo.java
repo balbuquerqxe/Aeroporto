@@ -54,18 +54,20 @@ public class TelaAdministrativo extends JFrame {
                     });
                     break;
                 case "Gerar Relatórios":
-                    // ***** FAÇA A MUDANÇA AQUI *****
                     botao.addActionListener(e -> {
-                        // Linha original: new TelaGerarRelatorios(funcionario).setVisible(true);
-                        // --- SUBSTITUA PELA LINHA ABAIXO ---
                         new TelaGerarRelatorios(funcionario, this).setVisible(true);
-                        this.setVisible(false); // Esconde a tela atual
+                        this.setVisible(false); 
                     });
                     break;
                 case "Voltar":
                     botao.addActionListener(e -> {
                         dispose();
                         new visual.TelaInicial().setVisible(true);
+                    });
+                case "Cancelar Voo":
+                    botao.addActionListener(e -> {
+                        dispose();
+                        new TelaCancelarVoos(funcionario, SistemaAeroporto.avioes, SistemaAeroporto.pilotosDisponiveis).setVisible(true);
                     });
                     break;
             }
