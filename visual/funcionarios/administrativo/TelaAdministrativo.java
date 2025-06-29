@@ -37,17 +37,15 @@ public class TelaAdministrativo extends JFrame {
             botao.setFont(new Font("SansSerif", Font.PLAIN, 18));
             botao.setBackground(Color.decode("#0052cc"));
             botao.setForeground(Color.WHITE);
-            botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2)); // Adiciona uma borda
+            botao.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 2));
             botoes.add(botao);
 
             switch (texto) {
                 case "Cadastrar Voo":
                     botao.addActionListener(e -> {
-                        // Aqui você chama a tela de cadastro de voo
                         Administrativo adm = (Administrativo) funcionario;
                         new TelaCadastrarVoos(adm, SistemaAeroporto.avioes, SistemaAeroporto.pilotosDisponiveis)
                                 .setVisible(true);
-
                     });
                     break;
                 case "Responder Perguntas":
@@ -56,8 +54,12 @@ public class TelaAdministrativo extends JFrame {
                     });
                     break;
                 case "Gerar Relatórios":
+                    // ***** FAÇA A MUDANÇA AQUI *****
                     botao.addActionListener(e -> {
-                        new TelaGerarRelatorios(funcionario).setVisible(true);
+                        // Linha original: new TelaGerarRelatorios(funcionario).setVisible(true);
+                        // --- SUBSTITUA PELA LINHA ABAIXO ---
+                        new TelaGerarRelatorios(funcionario, this).setVisible(true);
+                        this.setVisible(false); // Esconde a tela atual
                     });
                     break;
                 case "Voltar":
@@ -72,7 +74,6 @@ public class TelaAdministrativo extends JFrame {
         add(titulo, BorderLayout.NORTH);
         add(botoes, BorderLayout.CENTER);
 
-        // Registra o funcionário na central de comunicação ao abrir a tela
         CentralComunicacao.registrar(funcionario);
     }
 }
