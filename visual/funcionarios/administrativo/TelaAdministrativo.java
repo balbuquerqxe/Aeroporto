@@ -59,6 +59,12 @@ public class TelaAdministrativo extends JFrame {
                         this.setVisible(false); 
                     });
                     break;
+                case "Gerenciar Aviões":
+                    botao.addActionListener(e -> {
+                        Administrativo adm = (Administrativo) funcionario;
+                        new TelaGerenciarAvioes(adm).setVisible(true);
+                    });
+                    break;
                 case "Voltar":
                     botao.addActionListener(e -> {
                         dispose();

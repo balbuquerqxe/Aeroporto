@@ -56,6 +56,7 @@ public class TelaPassageiro extends JFrame {
 
                 case "Consultar Reserva":
                     botao.addActionListener(e -> new TelaCancelarReserva(passageiro).setVisible(true));
+                    break;
 
                 case "Enviar Dúvida":
                     botao.addActionListener(e -> {

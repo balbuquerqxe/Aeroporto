@@ -47,10 +47,23 @@ public class TelaCancelarReserva extends JFrame {
         btnCancelar.setFocusPainted(false);
         btnCancelar.setPreferredSize(new Dimension(180, 40));
         btnCancelar.addActionListener(e -> cancelarReserva());
+
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        btnVoltar.setBackground(Color.decode("#e6f0ff"));
+        btnVoltar.setForeground(Color.decode("#003366"));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setPreferredSize(new Dimension(100, 40));
+        btnVoltar.setBorder(BorderFactory.createLineBorder(Color.decode("#003366"), 1));
+        btnVoltar.addActionListener(e -> dispose());
+
         JPanel painelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         painelInferior.setBackground(Color.decode("#e6f0ff"));
         painelInferior.add(btnCancelar);
+        painelInferior.add(btnVoltar);
+
         add(painelInferior, BorderLayout.SOUTH);
+
 
         setVisible(true);
     }
