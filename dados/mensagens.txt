@@ -1,43 +1,13 @@
-Administrativo -> Bruna | Mensagem: Você pode consultar no site.
-
-Julia -> ADMINISTRADOR | Mensagem: Qual é a cor do avião?
-
-Administrativo -> Julia | Mensagem: Azul idiota
-
-Julia -> ADMINISTRADOR | Mensagem: Obgda!
-
-Administrativo -> Lucas | Mensagem: O embarque será no terminal 1.
-
-Julia -> ADMINISTRADOR | Mensagem: Qual é o tamanho do avião?
-
-Administrativo -> Julia | Mensagem: muito grande
-
-Administrativo -> Julia | Mensagem: Sua boba
-
-João -> Administrativo | Mensagem: Eu nn sou boba!
-
-Administrativo -> João | Mensagem: Oi!
-
-Administrativo -> Julia | Mensagem: tonta!
-
-João -> Administrativo | Mensagem: affff
-
-Mathew -> Administrativo | Mensagem: OIII
-
-João -> Administrativo | Mensagem: Onde é o voo?
-
-Administrativo -> João | Mensagem: No aeroporto idiota!
-
-Tereza -> Administrativo | Mensagem: Tem lanche no avião?
-
-Administrativo -> Tereza | Mensagem: Tem! Muio gostosos!
-
-Fabricio Karasz -> Administrativo | Mensagem: Qual é a altitude máxima do voo?
-
-Administrativo -> Fabrício Karasz | Mensagem: 1000000000 m
-
-Administrativo -> Tereza | Mensagem: oi
-
-Administrativo -> Victor | Mensagem: oi
-
-Gabi -> Administrativo | Mensagem: Como faço pra receber comida
+Amanda -> Angelica Cunha dos Santos | Mensagem: Olá, gostaria de saber se meu voo para Santiago está confirmado.
+Fabricio Karasz -> Esther Luna Colombini | Mensagem: Qual é a altitude máxima do voo para Dubai?
+Esther Luna Colombini -> Fabricio Karasz | Mensagem: Olá, Fabricio! A altitude de cruzeiro do seu voo será de aproximadamente 12.000 metros.
+Raissa Barboza -> Antonio Carlos Carvalho Macedo | Mensagem: O voo para Dubai é direto ou tem escala?
+Antonio Carlos Carvalho Macedo -> Raissa Barboza | Mensagem: O voo é direto, sem escalas.
+Leticia -> Athyrson Machado Ribeiro | Mensagem: Onde é o portão de embarque para o voo de Paris?
+Athyrson Machado Ribeiro -> Leticia | Mensagem: Olá, Leticia! O portão de embarque será informado no painel principal 2 horas antes da partida.
+Victor -> Gabriel Dias de Oliveira | Mensagem: Tem lanche no avião?
+Gabriel Dias de Oliveira -> Victor | Mensagem: Sim, Victor! Servimos lanches em todos os nossos voos. As opções podem ser consultadas com a equipe de bordo.
+Diogo Barros -> João Victor Pátaro | Mensagem: Como faço para receber comida?
+João Victor Pátaro -> Gabi | Mensagem: O serviço de bordo passará pela sua poltrona para oferecer as opções de lanche e bebida.
+Tereza -> Wladimir Arturo Garces Carrillo | Mensagem: Olá, perdi meu documento. Ainda consigo embarcar?
+Wladimir Arturo Garces Carrillo -> Tereza | Mensagem: Olá, Tereza. Por favor, dirija-se ao balcão da nossa companhia aérea com um boletim de ocorrência para que possamos ajudá-la.
