@@ -43,7 +43,7 @@ O sistema é organizado em pacotes que separam as responsabilidades:
   * **`visual`**: Contém todas as janelas (classes `JFrame`) que compõem a interface gráfica.
   * **`sistema`**: Ponto de entrada da aplicação, responsável por carregar os dados iniciais.
 
-### Diagrama de Classes 
+### Diagrama de Classes
 
 ```mermaid
 classDiagram
@@ -131,3 +131,12 @@ classDiagram
   * **Interfaces**: A interface `Comunicavel` é implementada por classes que podem interagir no chat, como `Passageiro` e `Administrativo`. A interface `GerenciadorDeVoos` define o contrato para cadastrar voos, implementado por `Administrativo`.
   * **Associação**: Existe uma forte associação entre as classes de `visual` (as telas) e as classes de `pessoas` (os dados dos usuários). Por exemplo, a `TelaAdministrativo` precisa de um objeto `Administrativo` para funcionar.
   * **Composição**: Um `Voo` é composto por um `Aviao` e um `Piloto`, indicando que um voo não existe sem eles.
+
+## Testes de Funcionalidades
+
+Para testar as diferentes funcionalidades do sistema, utilize os dados de login fornecidos nos arquivos localizados na pasta `dados/`.
+
+  * **Para Passageiros**: Utilize os dados do arquivo `passageiros.csv`. O login é feito com o **CPF** e a **senha** correspondentes.
+  * **Para Funcionários (Pilotos e Administrativos)**: Utilize os dados do arquivo `funcionarios.csv`. O login é feito com a **matrícula** e a **senha** correspondentes.
+
+Com esses dados, você poderá acessar os diferentes painéis e testar todas as funcionalidades implementadas para cada tipo de usuário.
