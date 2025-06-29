@@ -4,16 +4,20 @@ import pessoas.Administrativo;
 import enums.TipoAviao;
 
 import javax.swing.*;
+
+import aviao.Aviao;
+
 import java.awt.*;
 import java.io.*;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TelaGerenciarAvioes extends JFrame {
 
     private static final String CAMINHO_ARQUIVO = "dados/avioes.csv";
     private JComboBox<TipoAviao> comboAdicionar;
-    private JComboBox<TipoAviao> comboRemover;
+    private JComboBox<Aviao> comboRemover;
 
     public TelaGerenciarAvioes(Administrativo adm) {
         setTitle("Gerenciar Aviões");
@@ -40,7 +44,7 @@ public class TelaGerenciarAvioes extends JFrame {
         disponiveisParaAdicionar.removeAll(avioesAtuais);
 
         comboAdicionar = new JComboBox<>(disponiveisParaAdicionar.toArray(new TipoAviao[0]));
-        comboRemover = new JComboBox<>(avioesAtuais.toArray(new TipoAviao[0]));
+        comboRemover = new JComboBox<>();  
 
         // Sessão Adicionar
         JPanel painelAdicionar = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -115,31 +119,93 @@ public class TelaGerenciarAvioes extends JFrame {
 
 
     private void adicionarAviao() {
-        TipoAviao tipo = (TipoAviao) comboAdicionar.getSelectedItem();
-        if (tipo == null) return;
+        TipoAviao selecionado = (TipoAviao) comboAdicionar.getSelectedItem();
+        if (selecionado == null) return;
 
-        try (PrintWriter pw = new PrintWriter(new FileWriter(CAMINHO_ARQUIVO, true))) {
-            pw.println(tipo.name());
+        String identificador = gerarIdentificador("BR");
+        File arquivo = new File(CAMINHO_ARQUIVO);
+
+        try {
+            boolean arquivoExiste = arquivo.exists();
+            boolean precisaPularLinha = false;
+
+            // Verifica se o arquivo termina com quebra de linha
+            if (arquivoExiste && arquivo.length() > 0) {
+                try (RandomAccessFile raf = new RandomAccessFile(arquivo, "r")) {
+                    raf.seek(arquivo.length() - 1);
+                    int ultimoByte = raf.read();
+                    if (ultimoByte != '\n') {
+                        precisaPularLinha = true;
+                    }
+                }
+            }
+
+            try (PrintWriter pw = new PrintWriter(new FileWriter(arquivo, true))) {
+                if (!arquivoExiste) {
+                    pw.println("tipo,identificacao"); // escreve cabeçalho se for novo
+                } else if (precisaPularLinha) {
+                    pw.println(); // adiciona quebra de linha só se necessário
+                }
+
+                pw.println(selecionado.name() + "," + identificador);
+            }
+
+            JOptionPane.showMessageDialog(this, "Avião adicionado com sucesso: " + identificador);
+            recarregarCombos();
+
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao adicionar: " + e.getMessage());
-            return;
+            JOptionPane.showMessageDialog(this, "Erro ao adicionar avião: " + e.getMessage());
+        }
+    }
+
+
+
+    private void recarregarCombos() {
+        comboAdicionar.removeAllItems();
+        comboRemover.removeAllItems();
+
+        // Adicionar todos os tipos de avião no comboAdicionar, mesmo que já existam no CSV
+        for (TipoAviao tipo : TipoAviao.values()) {
+            comboAdicionar.addItem(tipo);
         }
 
-        JOptionPane.showMessageDialog(this, "Avião adicionado!");
-        recarregar();
+        // Carrega os aviões do CSV para o comboRemover
+        List<Aviao> avioesNoCSV = Aviao.carregarDeCSV(CAMINHO_ARQUIVO);
+        for (Aviao aviao : avioesNoCSV) {
+            comboRemover.addItem(aviao);
+        }
+
+        // Habilita ou desabilita os combos com base no conteúdo
+        comboAdicionar.setEnabled(comboAdicionar.getItemCount() > 0);
+        comboRemover.setEnabled(comboRemover.getItemCount() > 0);
+    }
+
+
+
+
+    private String gerarIdentificador(String pais) {
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder();
+        Random rand = new Random();
+
+        for (int i = 0; i < 3; i++) {
+            sb.append(letras.charAt(rand.nextInt(letras.length())));
+        }
+
+        return pais.toUpperCase() + "-" + sb.toString();
     }
 
     private void removerAviao() {
-        TipoAviao tipo = (TipoAviao) comboRemover.getSelectedItem();
-        if (tipo == null) return;
+        Aviao aviaoSelecionado = (Aviao) comboRemover.getSelectedItem();
+        if (aviaoSelecionado == null) return;
 
-        List<TipoAviao> avioes = carregarAvioesDoCSV();
-        avioes.remove(tipo);
+        List<Aviao> avioes = Aviao.carregarDeCSV(CAMINHO_ARQUIVO);
+        avioes.removeIf(a -> a.getIdentificador().equals(aviaoSelecionado.getIdentificador()));
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(CAMINHO_ARQUIVO))) {
-            pw.println("tipo,identificacao"); // preserva o cabeçalho
-            for (TipoAviao aviao : avioes) {
-                pw.println(aviao.name()); // ou .toString(), se incluir mais dados
+            pw.println("tipo,identificacao");
+            for (Aviao aviao : avioes) {
+                pw.println(aviao.getTipo().name() + "," + aviao.getIdentificador());
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Erro ao remover: " + e.getMessage());
@@ -148,7 +214,8 @@ public class TelaGerenciarAvioes extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Avião removido!");
         recarregar();
-    }
+}
+
 
     private void recarregar() {
         dispose();

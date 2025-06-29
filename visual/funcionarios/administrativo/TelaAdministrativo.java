@@ -44,7 +44,7 @@ public class TelaAdministrativo extends JFrame {
                 case "Cadastrar Voo":
                     botao.addActionListener(e -> {
                         Administrativo adm = (Administrativo) funcionario;
-                        new TelaCadastrarVoos(adm, SistemaAeroporto.avioes, SistemaAeroporto.pilotosDisponiveis)
+                        new TelaCadastrarVoos(adm, SistemaAeroporto.pilotosDisponiveis)
                                 .setVisible(true);
                     });
                     break;
