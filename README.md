@@ -32,7 +32,7 @@ Este projeto é um sistema para gerenciamento de um aeroporto, desenvolvido em J
       * Localize o arquivo `sistema/SistemaAeroporto.java`.
       * Execute o método `main` contido neste arquivo para iniciar o sistema. A tela principal (`TelaInicial`) será exibida.
 
-## 🏛️ Arquitetura e Diagrama de Classes
+## Arquitetura e Diagrama de Classes
 
 O sistema é organizado em pacotes que separam as responsabilidades:
 
@@ -43,107 +43,85 @@ O sistema é organizado em pacotes que separam as responsabilidades:
   * **`visual`**: Contém todas as janelas (classes `JFrame`) que compõem a interface gráfica.
   * **`sistema`**: Ponto de entrada da aplicação, responsável por carregar os dados iniciais.
 
-### Diagrama de Classes (Mermaid)
+### Diagrama de Classes 
 
-```mermaid
 classDiagram
-    direction TB
+    direction BT
 
     class Pessoa {
-      #String id
-      #String nome
-      #String cpf
-      #String dataNascimento
-      #String senha
+        +String id
+        +String nome
+        +String cpf
     }
 
     class Funcionario {
-      #String matricula
-      #TipoFuncionario tipo
-      +executarFuncao()*
+        +String matricula
+        +TipoFuncionario tipo
     }
-    
+
     class Passageiro {
-      -ClassePassagem classePassagem
-      +consultarVoos()
-      +reservarPoltrona()
+        +ClassePassagem classePassagem
     }
 
     class Piloto {
-      +verEscala()
+        +verEscala()
     }
     
     class Administrativo {
-      -List~Voo~ voosCadastrados
-      +gerenciarAvioes()
-      +gerarConteudoRelatorio(List~Voo~) String
-    }
-
-    class Comissario {
-      +verEscala()
+        +List~Voo~ voosCadastrados
+        +gerarConteudoRelatorio()
+        +salvarRelatorioEmArquivo()
     }
 
     class Voo {
-      -String id
-      -Aviao aviao
-      -Destino destino
-      -LocalDateTime horarioSaida
-      -Piloto piloto
+        +String id
+        +LocalDateTime horarioSaida
     }
 
     class Aviao {
-      -String identificador
-      -TipoAviao tipo
+        +String identificador
+        +TipoAviao tipo
     }
     
-    class SistemaAeroporto {
-      +main(String[] args)
-    }
-
     class TelaInicial
     class TelaAdministrativo
     class TelaGerarRelatorios
     class TelaExibirRelatorio
+    class SistemaAeroporto {
+        +main()
+    }
 
     class Comunicavel {
-      <<interface>>
-      +enviarMensagem()
-      +receberMensagem()
-      +getNome()
+        <<interface>>
+        +enviarMensagem()
+        +receberMensagem()
     }
 
     class GerenciadorDeVoos {
-      <<interface>>
-      +cadastrarVoo()
+        <<interface>>
+        +cadastrarVoo()
     }
 
-    ' --- Relacionamentos ---
-
+    %% --- Heranças ---
     Pessoa <|-- Funcionario
     Pessoa <|-- Passageiro
-
     Funcionario <|-- Piloto
     Funcionario <|-- Administrativo
-    Funcionario <|-- Comissario
 
+    %% --- Interfaces ---
     Administrativo ..|> Comunicavel
     Passageiro ..|> Comunicavel
     Piloto ..|> Comunicavel
-
     Administrativo ..|> GerenciadorDeVoos
-    
-    Administrativo "1" -- "0..*" Voo : cadastra
-    Piloto "1" -- "0..*" Voo : pilota
-    Aviao "1" -- "0..*" Voo : realiza
 
-    TelaAdministrativo --|> JFrame
-    TelaGerarRelatorios --|> JFrame
-    TelaExibirRelatorio --|> JFrame
+    %% --- Associações e Dependências ---
+    Administrativo "1" --> "*" Voo : Cadastra
+    Piloto "1" --> "*" Voo : Pilota
+    Aviao "1" --> "*" Voo : Realiza
     
-    TelaAdministrativo ..> TelaGerarRelatorios : abre
-    TelaGerarRelatorios ..> TelaExibirRelatorio : exibe
-
-    SistemaAeroporto ..> TelaInicial : inicia
+    TelaAdministrativo ..> TelaGerarRelatorios : Abre
+    TelaGerarRelatorios ..> TelaExibirRelatorio : Exibe
+    SistemaAeroporto ..> TelaInicial : Inicia
 
 ```
 
