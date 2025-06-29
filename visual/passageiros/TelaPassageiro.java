@@ -1,6 +1,5 @@
 package visual.passageiros;
 
-import comunicacao.CentralComunicacao;
 import java.awt.*;
 import javax.swing.*;
 import pessoas.Passageiro;
@@ -29,7 +28,7 @@ public class TelaPassageiro extends JFrame {
         botoes.setBorder(BorderFactory.createEmptyBorder(30, 80, 30, 80)); // Aumentado o padding lateral
         botoes.setBackground(Color.decode("#e6f0ff"));
 
-        String[] opcoes = { "Consultar voos e reservar poltrona", "Enviar Dúvida", "Voltar" };
+        String[] opcoes = { "Consultar Reserva", "Reservar Poltrona", "Enviar Dúvida", "Voltar" };
 
         for (String texto : opcoes) {
             JButton botao = new JButton(texto);
@@ -51,16 +50,12 @@ public class TelaPassageiro extends JFrame {
                         new visual.TelaInicial().setVisible(true);
                     });
                     break;
-                case "Consultar voos e reservar poltrona":
+                case "Reservar Poltrona":
                     botao.addActionListener(e -> new TelaVoosDisponiveis(passageiro).setVisible(true));
                     break;
 
-                /*case "Reservar Poltrona":
-                    // O botão de reservar poltrona agora abre a tela de voos para seleção
-                    botao.addActionListener(e -> {
-                        new TelaVoosDisponiveis(passageiro).setVisible(true);
-                    });
-                    break;*/
+                case "Consultar Reserva":
+                    botao.addActionListener(e -> new TelaCancelarReserva(passageiro).setVisible(true));
 
                 case "Enviar Dúvida":
                     botao.addActionListener(e -> {
