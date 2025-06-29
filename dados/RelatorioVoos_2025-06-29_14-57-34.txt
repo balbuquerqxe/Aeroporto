@@ -1,0 +1,26 @@
+======================================================================
+                 RELATÓRIO DE VOOS
+======================================================================
+
+Gerado por: Raissa
+Data de Geração: 29/06/2025 14:57:34
+Total de Voos no Relatório: 1
+
+----------------------------------------------------------------------
+ID DO VOO:         28389d04-2d24-40a1-9d22-7c047282c39e
+DESTINO:           Dubai
+PILOTO:            Joao
+
+AERONAVE:
+  - Modelo:        Airbus A321neo
+  - Identificador: BR-ZHN
+
+HORÁRIOS:
+  - Data de Saída: 28/07/2025
+  - Hora de Saída: 11:30
+  - Data de Chegada: 29/07/2025
+  - Hora de Chegada: 02:23
+
+----------------------------------------------------------------------
+
+FIM DO RELATÓRIO.
