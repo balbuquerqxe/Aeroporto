@@ -84,7 +84,7 @@ public class TelaVoosDisponiveis extends JFrame {
                     } else {
                         // Se a imagem não carregar, usa um ícone de placeholder
                         // Ou pode deixar nulo para não exibir nada
-                        imgRedimensionada = new ImageIcon(getClass().getResource("/imagens/default_pilot.jpg"))
+                        imgRedimensionada = new ImageIcon(getClass().getResource("/imagens/Juliana.jpg"))
                                 .getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
                     }
                     ImageIcon finalIcone = (imgRedimensionada != null) ? new ImageIcon(imgRedimensionada) : null;

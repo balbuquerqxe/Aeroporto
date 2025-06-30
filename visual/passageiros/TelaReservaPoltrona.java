@@ -162,19 +162,19 @@ public class TelaReservaPoltrona extends JFrame {
     // Carrega o ícone da janelinha
     private static ImageIcon carregarIconeJanelinha() {
         try {
-            // Tenta carregar do classpath (ideal para JAR)
-            ImageIcon originalIcon = new ImageIcon(TelaReservaPoltrona.class.getResource("/imagens/janelinha.png"));
+            // Carrega diretamente do caminho relativo (funciona fora de .jar)
+            ImageIcon originalIcon = new ImageIcon("imagens/janelinha.png");
             if (originalIcon.getImageLoadStatus() == MediaTracker.COMPLETE) {
-                // Redimensiona para um tamanho adequado (ex: 50x50)
                 Image img = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
                 return new ImageIcon(img);
             }
         } catch (Exception e) {
             System.err.println("Erro ao carregar ou redimensionar a imagem da janelinha: " + e.getMessage());
         }
-        // Retorna um ícone padrão se a imagem não puder ser carregada
-        return new ImageIcon(new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB)); // Retorna uma imagem vazia transparente
+        // Retorna imagem vazia caso falhe
+        return new ImageIcon(new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB));
     }
+
 
     private void carregarAssentosOcupados() {
         File arquivo = new File(ARQUIVO_RESERVAS);
