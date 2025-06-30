@@ -13,11 +13,9 @@ import pessoas.Administrativo;
 public class TelaCancelarVoos extends JFrame {
 
     private JComboBox<String> comboVoos;
-    private Administrativo adm;
     private JFrame telaAnterior;
 
     public TelaCancelarVoos(Administrativo adm, JFrame telaAnterior) {
-        this.adm = adm;
         this.telaAnterior = telaAnterior;
 
         setTitle("Cancelar Voo");

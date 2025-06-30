@@ -9,10 +9,8 @@ import pessoas.Passageiro;
 public class TelaChatPassageiro extends JFrame {
     private JTextArea areaMensagens;
     private JTextField campoMensagem;
-    private Passageiro passageiro;
 
     public TelaChatPassageiro(Passageiro passageiro) {
-        this.passageiro = passageiro;
 
         setTitle("Enviar Dúvida");
         setSize(600, 450);

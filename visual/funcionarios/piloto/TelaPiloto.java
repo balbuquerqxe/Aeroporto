@@ -1,13 +1,8 @@
 package visual.funcionarios.piloto;
 
-import comunicacao.CentralComunicacao;
 import java.awt.*;
 import javax.swing.*;
 import pessoas.Piloto; // Importa a classe Piloto
-import visual.TelaInicial;
-import visual.funcionarios.piloto.TelaVoosDoPiloto;
-import visual.passageiros.TelaVoosDisponiveis;
-import sistema.SistemaAeroporto;
 
 
 public class TelaPiloto extends JFrame {

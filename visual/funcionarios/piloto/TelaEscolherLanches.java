@@ -3,7 +3,6 @@ package visual.funcionarios.piloto;
 import enums.Lanche;
 import javax.swing.*;
 import javax.swing.border.Border; // Importa Border
-import javax.swing.border.LineBorder; // Importa LineBorder
 import java.awt.*;
 import java.awt.event.MouseAdapter; // Para cliques do mouse
 import java.awt.event.MouseEvent;   // Para eventos do mouse
