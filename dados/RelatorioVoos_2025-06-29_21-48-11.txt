@@ -1,0 +1,26 @@
+======================================================================
+                 RELATÓRIO DE VOOS
+======================================================================
+
+Gerado por: Esther Luna Colombini
+Data de Geração: 29/06/2025 21:48:11
+Total de Voos no Relatório: 1
+
+----------------------------------------------------------------------
+ID DO VOO:         f911a97c-6b10-4f57-8fc8-46bc42ec37ff
+DESTINO:           Paris
+PILOTO:            Gabriela
+
+AERONAVE:
+  - Modelo:        Airbus A321neo
+  - Identificador: BR-YWF
+
+HORÁRIOS:
+  - Data de Saída: 29/06/2025
+  - Hora de Saída: 10:00
+  - Data de Chegada: 29/06/2025
+  - Hora de Chegada: 21:17
+
+----------------------------------------------------------------------
+
+FIM DO RELATÓRIO.

@@ -1,3 +1,7 @@
 Lucas -> Administrativo | Mensagem: Olá
 Esther Luna Colombini -> Lucas | Mensagem: Olá, Lucas! Como posso ajudá-lo?
 Lucas -> Administrativo | Mensagem: Não sei mexer aqui.
+João Rafael S -> Administrativo | Mensagem: Teste dúvida
+Esther Luna Colombini -> João Rafael S | Mensagem: Teste
+João R -> Administrativo | Mensagem: Teste dúvida
+Esther Luna Colombini -> João R | Mensagem: Teste
